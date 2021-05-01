@@ -1,16 +1,14 @@
 window.onload = (function () {
-  var c = document.getElementById('stage'),
-      d = c.getContext("2d"),
-      ct = document.getElementById('text-stage'),
-      dt = ct.getContext('2d'),
-      CANVAS_WIDTH = c.width = 32,
-      CANVAS_HEIGHT = c.height = 32,
+  var pixelCanvas = document.getElementById('stage'),
+      pixelContext = pixelCanvas.getContext("2d"),
+      textModeCanvas = document.getElementById('text-stage'),
+      textModeContext = textModeCanvas.getContext('2d'),
+      CANVAS_WIDTH = pixelCanvas.width = 32,
+      CANVAS_HEIGHT = pixelCanvas.height = 32,
       FONT_SIZE = 16,
-      TEXT_CANVAS_WIDTH = ct.width = FONT_SIZE * CANVAS_WIDTH,
-      TEXT_CANVAS_HEIGHT = ct.height = FONT_SIZE * CANVAS_HEIGHT,
+      TEXT_CANVAS_WIDTH = textModeCanvas.width = FONT_SIZE * CANVAS_WIDTH,
+      TEXT_CANVAS_HEIGHT = textModeCanvas.height = FONT_SIZE * CANVAS_HEIGHT,
       SCREEN_DIST = 2500,
-      PROJECTION_CENTER_X = CANVAS_WIDTH / 2,
-      PROJECTION_CENTER_Y = CANVAS_HEIGHT / 2,
       FIELD_OF_VIEW = CANVAS_WIDTH * 0.6,
       CUBE_VERTICES = [
         [-1, -1, -1], [1, -1, -1], [-1, 1, -1], [1, 1, -1],
@@ -34,7 +32,9 @@ window.onload = (function () {
       ],
       ASCII_TABLE = ' ·-:=*##',
       ASCII_GRAPHICS = [],
-      cubes = []
+      objects3d = [],
+      textCanvas = [],
+      angleCounter = 0
   ;
   /*                6 *********** 7
   *                *            *                     / \
@@ -43,7 +43,6 @@ window.onload = (function () {
                *          * **                /          - > x
              0 ************ 1                z
    */
-  var textCanvas = [];
 
   for (var y = 0; y < CANVAS_HEIGHT; y++) {
     textCanvas[y] = [];
@@ -62,8 +61,8 @@ window.onload = (function () {
     ctx.fillText(ASCII_TABLE[i], 0, FONT_SIZE);
   }
 
-  cubes.push(
-      new Cube(
+  objects3d.push(
+      new Obj3D(
           0,
           0,
           200,
@@ -75,27 +74,25 @@ window.onload = (function () {
           },
           CUBE_VERTICES,
           PLANES,
-          d
+          pixelContext
       )
   );
 
-  var angleCounter = 0;
-
   function animationStep() {
-    d.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    dt.clearRect(0, 0, TEXT_CANVAS_WIDTH, TEXT_CANVAS_HEIGHT);
+    pixelContext.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    textModeContext.clearRect(0, 0, TEXT_CANVAS_WIDTH, TEXT_CANVAS_HEIGHT);
 
     // Loop through the dots array and draw every dot
     angleCounter += 0.025;
-    cubes[0].angle = Math.PI * 2 * Math.sin(angleCounter / 6);
+    objects3d[0].angle = Math.PI * 2 * Math.sin(angleCounter / 6);
 
-    for (var i = 0; i < cubes.length; i++) {
-      cubes[i].z = cubes[i].startZ + 800 * Math.sin(cubes[i].angle);
-      cubes[i].draw();
+    for (var i = 0; i < objects3d.length; i++) {
+      objects3d[i].z = objects3d[i].startZ + 800 * Math.sin(objects3d[i].angle);
+      objects3d[i].draw();
     }
 
     // convert to text
-    var pixels = d.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
+    var pixels = pixelContext.getImageData(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
     var pixelData = pixels.data;
 
     for (var i = 0; i < pixelData.length; i += 4) {
@@ -110,7 +107,7 @@ window.onload = (function () {
       for (var x = 0; x < CANVAS_WIDTH; x++) {
         var asciiIndex = textCanvas[y][x];
         if (asciiIndex > 0) {
-          dt.drawImage(ASCII_GRAPHICS[asciiIndex], x * FONT_SIZE, y * FONT_SIZE)
+          textModeContext.drawImage(ASCII_GRAPHICS[asciiIndex], x * FONT_SIZE, y * FONT_SIZE)
         }
       }
     }
