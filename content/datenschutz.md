@@ -1,3 +1,5 @@
+% Datenschutzerklärung
+
 # Datenschutzerklärung
 
 ## 1. Datenschutz auf einen Blick
@@ -73,12 +75,12 @@ möglich.
 
 Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
 
-Lazerbahn software development & consulting
-Harpstedter Str. 7
-04319 Leipzig
+Lazerbahn software development & consulting \
+Harpstedter Str. 7 \
+04319 Leipzig 
 
-Telefon: 00491781979482
-E-Mail: mr@lazerbahn.com
+Telefon: 00491781979482 \
+E-Mail: mr@lazerbahn.com 
 
 Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über
 die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.)
