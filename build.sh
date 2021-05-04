@@ -9,26 +9,77 @@ __notify () {
 }
 
 __clearPub () {
-    __notify "Clear up build folder"
+    __notify "Clear up build folder ..."
     rm -rf pub/*
+}
+
+__prepareBlogNavigation () {
+    __notify "Prapare blog navigation ..."
+
+    echo "% TITLE Blog" > content/blog.md
+    echo "% DESCRIPTION Übersicht über alle Blogposts in chronologischer Reihenfolge" >> content/blog.md
+
+    echo "# Lazerbahn - Blog" >> content/blog.md
+
+    find content/blog -type f -print0 | xargs -0 ls -v | while read file
+    do
+        echo "blog post $file"
+        title=$(__getMetaTagFromMarkdownFile $file "TITLE")
+        description=$(__getMetaTagFromMarkdownFile $file "DESCRIPTION")
+        date=$(__getMetaTagFromMarkdownFile $file "DATE")
+        url=$(__getHtmlPathForMarkdownFile $file)
+
+        echo -e "## [ $title ]($url)\n" >> content/blog.md
+        echo -e " $date - $description\n" >> content/blog.md
+    done
+}
+
+__getMetaTagFromMarkdownFile () {
+    file=$1
+    tag=$2
+    title=$(grep "^\% $tag" "$file")
+    title=$(echo "$title" | cut -d " " -f 3-255)
+    echo $title
+}
+
+__getSlug () {
+    title=$1
+    # https://gist.github.com/oneohthree/f528c7ae1e701ad990e6
+    echo "$title" | iconv -t ascii//TRANSLIT | sed -r s/[~\^]+//g | sed -r s/[^a-zA-Z0-9]+/-/g | sed -r s/^-+\|-+$//g | tr A-Z a-z
+}
+
+__getHtmlPathForMarkdownFile () {
+    file=$1
+    filename=${file//\.md}
+    filename=${filename//content\/}
+    title=$(__getMetaTagFromMarkdownFile "$file" "TITLE")
+    slug=$(__getSlug "$title")
+
+    targetFilename="$filename.html"
+    targetDirectory=$(dirname $targetFilename)
+    targetFilename="$targetDirectory/$slug.html"
+    echo $targetFilename
 }
 
 __prepareContent () {
     __notify "Building content ..."
-    for file in content/* ; do
+    for file in $(find content -name "*.md" ) ; do
         if [ -d "$file" ]; then
             continue
         fi
+        echo "    > $file"
 
-        filename=${file//\.md}
-        filename=${filename//content\/}
-        echo "    > $filename"
+        targetFilename="pub/$(__getHtmlPathForMarkdownFile $file)"
+        targetDirectory=$(dirname $targetFilename)
+        mkdir -p $targetDirectory
+
         pandoc --output "pub/$filename-fragment.html" "$file"
-        cat source/header.html "pub/$filename-fragment.html" source/footer.html > "pub/$filename.html"
+        cat source/header.html "pub/$filename-fragment.html" source/footer.html > $targetFilename
         rm "pub/$filename-fragment.html"
-        __updateMetaTagsInHtmlFile "$file" "pub/$filename.html"
+        __updateMetaTagsInHtmlFile "$file" "$targetFilename"
     done
 
+    # copy static files
     cp source/index.html pub/index.html
 }
 
@@ -38,12 +89,11 @@ __updateMetaTagsInHtmlFile () {
     echo "        > updating META tags in $htmlFile"
     grep '^\%' $markdownFile | while IFS= read -r line ;
     do
-        metaTitle=$(echo "$line" | cut -d " " -f 2)
-        metaValue=$(echo "$line" | cut -d " " -f 3-100)
+        metaTagName=$(echo "$line" | cut -d " " -f 2)
+        metaTagValue=$(echo "$line" | cut -d " " -f 3-255)
 
-        sed -i -e "s/#$metaTitle#/$metaValue/" "$htmlFile"
+        sed -i -e "s/#$metaTagName#/$metaTagValue/" "$htmlFile"
     done
-
 }
 
 __prepareAssetVersioning () {
@@ -75,7 +125,8 @@ __prepareCSS () {
     mkdir -p pub/css
     ls -v source/css/*.css | xargs cat >> pub/css/styles.css
     echo "    > minify css"
-    yui-compressor pub/css/styles.css -o  pub/css/styles.min.css
+    # TODO find way to minify this
+    cp pub/css/styles.css pub/css/styles.min.css
 }
 
 __prepareJS () {
@@ -103,6 +154,10 @@ __prepareJS () {
     fi
 }
 
+__prepareHtaccess () {
+    cp source/.htaccess pub
+}
+
 echo "build.sh: Command line options"
 echo ""
 echo " build.sh debug           creates debug build of the js"
@@ -115,16 +170,20 @@ if [ "$1" == "css-only" ]; then
 fi
 
 if [ "$1" == "content-only" ]; then
+    __prepareBlogNavigation
     __prepareContent
+    __prepareAssetVersioning
     exit 0
 fi
 
 __clearPub
+__prepareBlogNavigation
 __prepareContent
 __prepareAssetVersioning
 __prepareImages
 __prepareFonts
 __prepareCSS
 __prepareJS $1
+__prepareHtaccess
 
 
