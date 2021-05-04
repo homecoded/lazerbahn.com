@@ -1,4 +1,5 @@
-% Impressum
+% TITLE Impressum
+% DESCRIPTION Impressum für lazerbahn.com
 
 # Impressum
 ## Angaben gemäß § 5 TMG 

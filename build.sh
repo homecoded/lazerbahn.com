@@ -26,9 +26,24 @@ __prepareContent () {
         pandoc --output "pub/$filename-fragment.html" "$file"
         cat source/header.html "pub/$filename-fragment.html" source/footer.html > "pub/$filename.html"
         rm "pub/$filename-fragment.html"
+        __updateMetaTagsInHtmlFile "$file" "pub/$filename.html"
     done
 
     cp source/index.html pub/index.html
+}
+
+__updateMetaTagsInHtmlFile () {
+    markdownFile="$1"
+    htmlFile="$2"
+    echo "        > updating META tags in $htmlFile"
+    grep '^\%' $markdownFile | while IFS= read -r line ;
+    do
+        metaTitle=$(echo "$line" | cut -d " " -f 2)
+        metaValue=$(echo "$line" | cut -d " " -f 3-100)
+
+        sed -i -e "s/#$metaTitle#/$metaValue/" "$htmlFile"
+    done
+
 }
 
 __prepareAssetVersioning () {

@@ -1,6 +1,7 @@
-% Datenschutzerklärung
+% TITLE Datenschutzerklärung
+% DESCRIPTION Datenschutzerklärung für lazerbahn.com
 
-# Datenschutzerklärung
+# Datenschutz&shy;erklärung
 
 ## 1. Datenschutz auf einen Blick
 
