@@ -1,0 +1,72 @@
+.statement {
+    width: 100%;
+    height: 60%;
+    background: rgb(240, 240, 240);
+    background: linear-gradient(0deg, rgb(200, 200, 200) 0%, rgb(220, 220, 220) 3%, rgb(240, 240, 240) 35%, rgb(245, 245, 245) 100%);
+    position: relative;
+    margin-bottom: 4vh;
+    margin-top: -4vh;
+}
+
+.animation {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
+
+.statement .manu {
+    position: absolute;
+    bottom: -7%;
+    left: 20%;
+    width: 20%;
+    max-height: 60%;
+    min-height: 50%;
+    background-image: url(../images/manu.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.statement * {
+    z-index: 1;
+}
+
+#stage {
+    display: none;
+}
+
+#text-stage {
+    height: 100%;
+    position: absolute;
+    top: 0px;
+    right: -25%;
+    z-index: 0;
+}
+
+.statement .content--statement {
+    position: absolute;
+    bottom: -7%;
+}
+
+@media only screen and (min-width: 600px) {
+    #text-stage {
+        right: -10%;
+    }
+}
+
+@media only screen and (min-width: 800px) {
+    #text-stage {
+        right: 0;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    #text-stage {
+        right: 15%;
+    }
+
+    .statement {
+        height: 72%;
+    }
+}

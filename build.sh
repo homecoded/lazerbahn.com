@@ -57,7 +57,7 @@ __prepareFonts () {
 __prepareCSS () {
     __notify "Preparing CSS assets ..."
     echo "    > merge CSS files"
-    mkdir pub/css
+    mkdir -p pub/css
     ls -v source/css/*.css | xargs cat >> pub/css/styles.css
     echo "    > minify css"
     yui-compressor pub/css/styles.css -o  pub/css/styles.min.css
@@ -88,6 +88,22 @@ __prepareJS () {
     fi
 }
 
+echo "build.sh: Command line options"
+echo ""
+echo " build.sh debug           creates debug build of the js"
+echo " build.sh css-only        compile only css"
+echo " build.sh content-only    compile only content"
+
+if [ "$1" == "css-only" ]; then
+    __prepareCSS
+    exit 0
+fi
+
+if [ "$1" == "content-only" ]; then
+    __prepareContent
+    exit 0
+fi
+
 __clearPub
 __prepareContent
 __prepareAssetVersioning
@@ -95,3 +111,5 @@ __prepareImages
 __prepareFonts
 __prepareCSS
 __prepareJS $1
+
+

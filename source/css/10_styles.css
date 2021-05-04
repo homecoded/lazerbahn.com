@@ -92,18 +92,6 @@ h1.logo {
     display: none;
 }
 
-#stage {
-    display: none;
-}
-
-#text-stage {
-    height: 100%;
-    position: absolute;
-    top: 0px;
-    right: 15%;
-    z-index: 0;
-}
-
 .navigation {
     background: #fff;
     width: 100%;
@@ -147,11 +135,6 @@ h1.logo {
     margin-top: 0;
 }
 
-.statement .content--statement {
-    position: absolute;
-    bottom: -7%;
-}
-
 .menu--main-content {
     margin: 0;
     padding-left: 0;
@@ -190,34 +173,6 @@ h1.logo {
 .navigation .menu a:hover {
     text-decoration: underline;
 }
-
-.statement {
-    width: 100%;
-    height: 80%;
-    background: rgb(240, 240, 240);
-    background: linear-gradient(0deg, rgb(200, 200, 200) 0%, rgb(220, 220, 220) 3%, rgb(240, 240, 240) 35%, rgb(245, 245, 245) 100%);
-    position: relative;
-    margin-bottom: 4vh;
-    margin-top: -4vh;
-}
-
-.statement .manu {
-    position: absolute;
-    bottom: -7%;
-    left: 20%;
-    width: 10%;
-    max-height: 80%;
-    min-height: 50%;
-    background-image: url(../images/manu.png);
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: bottom;
-}
-
-.statement * {
-    z-index: 1;
-}
-
 
 .content {
     max-width: 1200px;
