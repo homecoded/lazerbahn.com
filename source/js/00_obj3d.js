@@ -1,4 +1,4 @@
-function Obj3D(x, y, z, foV, projection, vertices, planes, gfxContext) {
+function O3D(x, y, z, foV, projection, vertices, planes, gfxContext) {
   this.x = x;
   this.y = y;
   this.z = z;

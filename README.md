@@ -12,9 +12,9 @@ Build a new version of static pages run
 - optipng
 - jpegoptim
 - pandoc
-- yui-compressor
 - closure-compiler
 - regpack
+- uglifycss
 
 ### Install requirements:
 
@@ -22,7 +22,7 @@ Build a new version of static pages run
 sudo apt-get install jpegoptim
 sudo apt-get install optipng
 sudo apt-get install pandoc
-sudo apt-get install yui-compressor
 sudo apt-get install closure-compiler
 sudo npm install -g regpack
+sudo npm install -g uglifycss
 ```

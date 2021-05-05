@@ -62,7 +62,7 @@ window.onload = (function () {
   }
 
   objects3d.push(
-      new Obj3D(
+      new O3D(
           0,
           0,
           200,

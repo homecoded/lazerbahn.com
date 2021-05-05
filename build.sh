@@ -29,8 +29,8 @@ __prepareBlogNavigation () {
         date=$(__getMetaTagFromMarkdownFile $file "DATE")
         url=$(__getHtmlPathForMarkdownFile $file)
 
-        echo -e "## [ $title ]($url)\n" >> content/blog.md
-        echo -e " $date - $description\n" >> content/blog.md
+        echo -e "### [ $title ]($url) \n" >> content/blog.md
+        echo -e "**/\* $date \*/** $description\n" >> content/blog.md
     done
 }
 
@@ -125,8 +125,7 @@ __prepareCSS () {
     mkdir -p pub/css
     ls -v source/css/*.css | xargs cat >> pub/css/styles.css
     echo "    > minify css"
-    # TODO find way to minify this
-    cp pub/css/styles.css pub/css/styles.min.css
+    uglifycss pub/css/styles.css > pub/css/styles.min.css
 }
 
 __prepareJS () {
@@ -142,15 +141,12 @@ __prepareJS () {
         echo "    > minify js"
         echo "         > closure compiler"
         closure-compiler --accept_const_keyword  --language_in ECMASCRIPT5 --js pub/js/scripts.js --js_output_file pub/js/scripts.closured.js
-        echo "         > yui compressor"
-        yui-compressor pub/js/scripts.closured.js -o pub/js/scripts.yuied.js
         echo "         > regpack"
-        regpack pub/js/scripts.yuied.js > pub/js/scripts.min.js
+        regpack pub/js/scripts.closured.js > pub/js/scripts.min.js
 
         # clean up intermediate files
         echo "         > clean up intermediate files"
         rm pub/js/scripts.closured.js
-        rm pub/js/scripts.yuied.js
     fi
 }
 
