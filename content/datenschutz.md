@@ -76,8 +76,9 @@ möglich.
 
 Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
 
+Manuel Rülke \
 Lazerbahn software development & consulting \
-Harpstedter Str. 7 \
+Baumeister-Günther-Straße 30 \
 04319 Leipzig 
 
 Telefon: 00491781979482 \

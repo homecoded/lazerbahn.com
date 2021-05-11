@@ -6,7 +6,7 @@
 
 *Manuel Rülke* \
 LAZERBAHN - software development & consulting \
-Harpstedter Str. 7 \
+Baumeister-Günther-Straße 30 \
 04319 Leipzig
   
 ## Kontakt
