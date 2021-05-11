@@ -1,7 +1,7 @@
 # lazerbahn.com
 
 Repository for website at lazerbahn.com.
-This is the prototype for a simle flat file CMS driven by a static page generator.
+This is the prototype for a simple flat file CMS driven by a static page generator.
 
 Build a new version of static pages run
 

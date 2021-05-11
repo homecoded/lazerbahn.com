@@ -61,6 +61,12 @@ h3 {
     margin-top: 2vh;
 }
 
+h1 a,
+h2 a,
+h3 a {
+    border: none;
+}
+
 strong {
     text-transform: uppercase;
     color: #000;

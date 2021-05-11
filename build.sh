@@ -1,6 +1,9 @@
 #!/bin/bash
 cd "$(dirname "$0")"
 
+# create array for files to clean up after building
+declare -a filesToCleanUp
+
 __notify () {
     echo " "
     echo "+-------------------------------------------------------------------+"
@@ -19,7 +22,7 @@ __prepareBlogNavigation () {
     echo "% TITLE Blog" > content/blog.md
     echo "% DESCRIPTION Übersicht über alle Blogposts in chronologischer Reihenfolge" >> content/blog.md
 
-    echo "# Lazerbahn - Blog" >> content/blog.md
+    cat content/blog/stubs/blog.md >> content/blog.md
 
     find content/blog -type f -print0 | xargs -0 ls -v | while read file
     do
@@ -29,9 +32,11 @@ __prepareBlogNavigation () {
         date=$(__getMetaTagFromMarkdownFile $file "DATE")
         url=$(__getHtmlPathForMarkdownFile $file)
 
-        echo -e "### [ $title ]($url) \n" >> content/blog.md
-        echo -e "**/\* $date \*/** $description\n" >> content/blog.md
+        echo -e "### // [ $title ]($url) \n" >> content/blog.md
+        echo -e "$date\n" >> content/blog.md
+        echo -e "$description\n" >> content/blog.md
     done
+    __addFileToCleanUpList "content/blog.md"
 }
 
 __getMetaTagFromMarkdownFile () {
@@ -46,6 +51,10 @@ __getSlug () {
     title=$1
     # https://gist.github.com/oneohthree/f528c7ae1e701ad990e6
     echo "$title" | iconv -t ascii//TRANSLIT | sed -r s/[~\^]+//g | sed -r s/[^a-zA-Z0-9]+/-/g | sed -r s/^-+\|-+$//g | tr A-Z a-z
+}
+
+__addFileToCleanUpList () {
+    filesToCleanUp+=($1)
 }
 
 __getHtmlPathForMarkdownFile () {
@@ -67,15 +76,24 @@ __prepareContent () {
         if [ -d "$file" ]; then
             continue
         fi
-        echo "    > $file"
+        echo "    > ## $file"
 
         targetFilename="pub/$(__getHtmlPathForMarkdownFile $file)"
         targetDirectory=$(dirname $targetFilename)
         mkdir -p $targetDirectory
 
+        if [ $(basename $targetFilename) = ".html" ]; then
+            echo "       > skipped. META tags missing!"
+            continue
+        fi
+        echo "    > -> $targetFilename"
+        filename=$(__getSlug $file)
+
         pandoc --output "pub/$filename-fragment.html" "$file"
-        cat source/header.html "pub/$filename-fragment.html" source/footer.html > $targetFilename
-        rm "pub/$filename-fragment.html"
+        cat source/header.html > $targetFilename
+        cat "pub/$filename-fragment.html" >> $targetFilename
+        cat source/footer.html >> $targetFilename
+        __addFileToCleanUpList "pub/$filename-fragment.html"
         __updateMetaTagsInHtmlFile "$file" "$targetFilename"
     done
 
@@ -145,13 +163,26 @@ __prepareJS () {
         regpack pub/js/scripts.closured.js > pub/js/scripts.min.js
 
         # clean up intermediate files
-        echo "         > clean up intermediate files"
-        rm pub/js/scripts.closured.js
+        __addFileToCleanUpList "pub/js/scripts.closured.js"
     fi
 }
 
 __prepareHtaccess () {
     cp source/.htaccess pub
+}
+
+__cleanUpFiles () {
+    __notify "Cleaning up temporary files"
+
+    echo "    > Deleting files ... "
+    echo -ne "      "
+    for file in "${filesToCleanUp[@]}";
+    do
+        echo -ne "#"
+        rm $file
+    done
+    echo ""
+    echo "    > ${#filesToCleanUp[@]} files deleted."
 }
 
 echo "build.sh: Command line options"
@@ -162,6 +193,7 @@ echo " build.sh content-only    compile only content"
 
 if [ "$1" == "css-only" ]; then
     __prepareCSS
+    __cleanUpFiles
     exit 0
 fi
 
@@ -169,6 +201,7 @@ if [ "$1" == "content-only" ]; then
     __prepareBlogNavigation
     __prepareContent
     __prepareAssetVersioning
+    __cleanUpFiles
     exit 0
 fi
 
@@ -181,5 +214,5 @@ __prepareFonts
 __prepareCSS
 __prepareJS $1
 __prepareHtaccess
-
+__cleanUpFiles
 
