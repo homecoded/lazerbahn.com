@@ -1,4 +1,6 @@
 #!/bin/bash
+set -e
+
 cd "$(dirname "$0")"
 
 # create array for files to clean up after building
@@ -50,7 +52,14 @@ __getMetaTagFromMarkdownFile () {
 __getSlug () {
     title=$1
     # https://gist.github.com/oneohthree/f528c7ae1e701ad990e6
-    echo "$title" | iconv -t ascii//TRANSLIT | sed -r s/[~\^]+//g | sed -r s/[^a-zA-Z0-9]+/-/g | sed -r s/^-+\|-+$//g | tr A-Z a-z
+    echo "$title" | sed -e 's/\Ä/\&Auml;/g' \
+            -e 's/\ä/ae/g' \
+            -e 's/\Ö/Oe/g' \
+            -e 's/\ö/oe/g' \
+            -e 's/\Ü/Ue/g' \
+            -e 's/\ü/ue/g' \
+            -e 's/\ß/ss/g' \
+        | iconv -f utf-8 -t ascii//TRANSLIT | sed -r s/[~\^]+//g | sed -r s/[^a-zA-Z0-9]+/-/g | sed -r s/^-+\|-+$//g | tr A-Z a-z
 }
 
 __addFileToCleanUpList () {
@@ -77,12 +86,11 @@ __prepareContent () {
             continue
         fi
         echo "    > ## $file"
-
         targetFilename="pub/$(__getHtmlPathForMarkdownFile $file)"
         targetDirectory=$(dirname $targetFilename)
         mkdir -p $targetDirectory
 
-        if [ $(basename $targetFilename) = ".html" ]; then
+        if [ $(basename "$targetFilename") = ".html" ]; then
             echo "       > skipped. META tags missing!"
             continue
         fi
@@ -90,7 +98,7 @@ __prepareContent () {
         filename=$(__getSlug $file)
 
         pandoc --output "pub/$filename-fragment.html" "$file"
-        cat source/header.html > $targetFilename
+        cat source/header.html > "$targetFilename"
         cat "pub/$filename-fragment.html" >> $targetFilename
         cat source/footer.html >> $targetFilename
         __addFileToCleanUpList "pub/$filename-fragment.html"
@@ -105,7 +113,7 @@ __updateMetaTagsInHtmlFile () {
     markdownFile="$1"
     htmlFile="$2"
     echo "        > updating META tags in $htmlFile"
-    grep '^\%' $markdownFile | while IFS= read -r line ;
+    grep '^\%' "$markdownFile" | while IFS= read -r line ;
     do
         metaTagName=$(echo "$line" | cut -d " " -f 2)
         metaTagValue=$(echo "$line" | cut -d " " -f 3-255)
@@ -127,9 +135,9 @@ __prepareImages () {
     __notify "Preparing images assets ..."
     cp -r source/images pub
     echo "    > Optimize PNGs"
-    find pub/images -name '*.png' | xargs optipng -o7
+    find pub/images -name '*.png' | xargs optipng -o7 | true
     echo "    > Optimize JPGs"
-    find pub/images -name '*.jpg' | xargs jpegoptim --strip-all -m76
+    find pub/images -name '*.jpg' | xargs jpegoptim --strip-all -m76 || true
 }
 
 __prepareFonts () {
