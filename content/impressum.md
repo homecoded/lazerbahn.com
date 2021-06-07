@@ -36,7 +36,7 @@ Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch ers
 Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden
 Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.
 
-##Haftung für Links
+## Haftung für Links
 
 Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben.
 Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der
