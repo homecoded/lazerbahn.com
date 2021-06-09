@@ -24,7 +24,7 @@ auszurichten:
   Selbstständiger Software-Entwickler und Berater
 
 Ich freue mich immer, wenn ich mein Wissen weitergeben kann oder über meine Ansichten sprechen darf. Ich schreibe 
-Artikel für Fachmagazine halte Vorträge auf fachspezifischen Konferenzen oder Meetups. Hier sind ein paar Bespiele:
+Artikel für Fachmagazine halte Vorträge auf fachspezifischen Konferenzen oder Meetups. Hier sind ein paar Beispiele:
 
 - [Deine KI ist künstlich, aber nicht intelligent](https://www.youtube.com/watch?v=hAcWXIEKzJE) - Softwerkskammer 
   Thüringen
