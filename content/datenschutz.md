@@ -53,9 +53,11 @@ erforderlich ist und unsere Weisungen in Bezug auf diese Daten befolgen.
 
 Wir setzen folgenden Hoster ein:
 
-1&1 Telecommunication SE \
-Elgendorfer Str. 57 \
-56410 Montabaur
+Contabo GmbH \
+Aschauer Straße 32a \
+81549 München \
+Deutschland
+
 
 ## 3. Allgemeine Hinweise und Pflichtinformationen
 
