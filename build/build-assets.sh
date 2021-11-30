@@ -148,6 +148,7 @@ __prepareCSS () {
     __notify "Preparing CSS assets ..."
     echo "    > merge CSS files"
     mkdir -p pub/css
+    rm -rf pub/css/styles.css
     ls -v source/css/*.css | xargs cat >> pub/css/styles.css
     echo "    > minify css"
     uglifycss pub/css/styles.css > pub/css/styles.min.css

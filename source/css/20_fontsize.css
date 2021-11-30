@@ -4,18 +4,18 @@ body {
 
 @media only screen and (min-width: 600px) {
     body {
-        font-size: 1.2rem;
+        font-size: 1.1rem;
     }
 }
 
 @media only screen and (min-width: 800px) {
     body {
-        font-size: 1.3rem;
+        font-size: 1.1rem;
     }
 }
 
 @media only screen and (min-width: 1200px) {
     body {
-        font-size: 1.4rem;
+        font-size: 1.2rem;
     }
 }

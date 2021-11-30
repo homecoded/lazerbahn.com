@@ -39,6 +39,27 @@ p, ul {
     padding-bottom: 4vh;
 }
 
+pre {
+    color: #372f14;
+    padding: 4vh;
+    border: 2px solid #aaa;
+    border-radius: .5vh;
+    box-shadow: 0 0 4vh rgba(0,0,0,.5);
+    margin-bottom: 4vh;
+    background: rgb(192, 192, 198);
+    overflow-x: auto;
+}
+
+pre code {
+    line-height: 1.8;
+}
+
+code {
+    font-size: .9rem;
+    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
+    font-weight: bold;
+}
+
 h1 {
     font-size: 210%;
     font-weight: normal;
@@ -185,3 +206,9 @@ h1.logo {
     padding: 2vh 2vh;
     position: relative;
 }
+
+blockquote {
+    border-left: 5px solid #999;
+    padding: 4vh 0 0 4vh;
+}
+

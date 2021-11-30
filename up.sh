@@ -9,6 +9,12 @@ if [ -f .env ]; then
   DOCKER_HOST_PORT=$LOCAL_PORT
 fi
 
-docker build -t lazerbahn --label="lazerbahn" .
+echo "use --rebuild to rebuild the docker env."
+
+if [[ $1 == '--rebuild' ]]; then
+  echo $(./down.sh)
+  docker build --no-cache -t lazerbahn --label="lazerbahn" .
+fi
+
 cd build
 docker run --name lazerbahn_web -d --volume $(pwd)/../:/var/www/html -p $DOCKER_HOST_PORT:80 lazerbahn
