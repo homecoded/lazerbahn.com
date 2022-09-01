@@ -30,7 +30,7 @@ Es ist aber oft einfach, die Index-Daten aus der ElasticSearch-Instanz auszulese
 Mit einigen einfachen curl-Requests auf der Kommandozeile können die indizierten Daten abgefragt werden. 
 
 **Hinweis:** Sollte am ElasicSearch-Server eine Authententifizierung notwendig sein, dann empfehle ich folgenden
-Link: https://www.elastic.co/guide/en/elasticsearch/reference/current/http-clients.html. Dieser erklärt, wie man
+Link: [https://www.elastic.co/guide/en/elasticsearch/reference/current/http-clients.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/http-clients.html). Dieser erklärt, wie man
 sich per curl ElasticSearch-Server anmeldet.
 
 Der Befehl
