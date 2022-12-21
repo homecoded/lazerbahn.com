@@ -56,7 +56,7 @@ window.onload = (function () {
     ASCII_GRAPHICS[i].width = FONT_SIZE;
     ASCII_GRAPHICS[i].height = FONT_SIZE;
     var ctx = ASCII_GRAPHICS[i].getContext("2d");
-    ctx.fillStyle = '#999';
+    ctx.fillStyle = '#f6f3ce';
     ctx.font = FONT_SIZE + "px monospace";
     ctx.fillText(ASCII_TABLE[i], 0, FONT_SIZE);
   }

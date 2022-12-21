@@ -1,9 +1,14 @@
 # Blog
 
-## Willkommen in meinen Notizen
+## Welcome to my blog
 
-Ich nutze diesen Platz um Notizen festzuhalten, die mir bei meiner Arbeit helfen.
-Vielleicht nützt das eine oder andere auch Dir.
+Here, I share my thoughts, tips, and experiences on coding and 
+software development. As a software developer, I am always learning and growing, 
+and I use this blog as a way to document and reflect on the things that have helped 
+me in my work. Whether you're just starting out in the field or you're a seasoned pro, 
+I hope you find something useful here. 
 
-Hier geht es um Programmierung, Magento und Webshops allgemein.
+I decided to write here in English as it is the language of software engineers.
+
+Thanks for stopping by!
 

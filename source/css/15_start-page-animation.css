@@ -1,8 +1,7 @@
 .statement {
     width: 100%;
     height: 60%;
-    background: rgb(240, 240, 240);
-    background: linear-gradient(0deg, rgb(200, 200, 200) 0%, rgb(220, 220, 220) 3%, rgb(240, 240, 240) 35%, rgb(245, 245, 245) 100%);
+    background: #316f8b;
     position: relative;
     margin-bottom: 4vh;
     margin-top: -4vh;
@@ -37,7 +36,7 @@
 }
 
 #text-stage {
-    height: 100%;
+    height: 120%;
     position: absolute;
     top: 0px;
     right: -25%;

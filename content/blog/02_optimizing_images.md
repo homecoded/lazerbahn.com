@@ -1,30 +1,30 @@
-% TITLE (DEV-TIPP) Eine große Menge an Bildern auf der Kommandozeile optimieren
-% DESCRIPTION Mit einem Oneliner kann man große Bild-Daten leicht auf der Kommandozeile optimieren. 
+% TITLE (DEV-TIP) Optimize a large amount of images on the command line.
+% DESCRIPTION An oneliner can be used to easily optimize large image data on the command line.
 % DATE 24.8.2022
 
-> Wie finde ich große Dateien unter Linux auf der Kommandozeile?
+> How do I find large files on the command line under Linux?
 
-Mit dem Befehl "find" können nicht nur Dateien anhand ihres Namens, sondern auch anhand anderer
-Merkmale gefunden werden:
+With the command "find" not only files can be found by their name, but also by other
+characteristics:
 
-    # Suche alle ".jpg-Dateien, die größer als 1 Megabyte sind
+    # Find all ".jpg" files larger than 1 megabyte
     find ./foldername -name "*.jpg" -size +1M
 
-Dieser Befehl findet alle Dateien in einem Verzeichnis und dessen Unterverzeichnissen, die 
-größer als 1 Megabyte sind.
+This command finds all files in a directory and its subdirectories, which are
+are larger than 1 megabyte.
 
-> Wie kann ich große Bildaten verkleinern?
+> How can I resize large image files?
 
-Die meisten Linux-Systeme haben ImageMagick bereits installiert. Wenn nicht, 
+Most Linux systems have ImageMagick already installed. If not,
 
     sudo apt install imagemagick
 
-installiert es (sofern wir ein System mit apt-Unterstütung vorliegen haben). Folgender Befehl
-verkleinert eine Datei auf eine maximale Kantenlänge (im Beispiel 1200px):  
+will install it (if we have a system with apt support). The following command
+resizes a file to a maximum edge length (1200px in the example):
 
     convert -resize "1200>" test.jpg
 
-Beides zusammen kombiniert ergibt:
+Combining both results in:
 
     find ./foldername -name "*.jpg" -size +1M | xargs convert -resize "1200>"
 

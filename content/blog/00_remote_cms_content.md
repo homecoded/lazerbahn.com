@@ -1,21 +1,31 @@
-% TITLE (DEV-TIPP) Magento-Entwicklungsumgebung: Bilder aus CMS-Content von Remote-Server nachladen.
-% DESCRIPTION In der lokalen Entwicklungsumgebung fehlen in der Regel alle Bilder aus der Live-Umgebung. Mit einem kleinen Hack kann man dieses Problem lösen.
+% TITLE (DEV-TIP) Magento development environment: Reload images from CMS and products from remote server.
+% DESCRIPTION In the local development environment, all images from the live environment are usually missing. With a small hack you can solve this problem.
 % DATE 4.11.2021
 
-# Trick zum Nachladen von Bild-Inhalten in Magento
+# Download Missing Images in Magento On-The-Fly
 
-## Bilder aus dem CMS
+One common problem that software developers may encounter when working on a website 
+or web application is that their local development environment may not have all of the 
+assets, such as images, that are needed to properly render the site. 
+This can be especially frustrating when working with a team, as each person's local 
+environment may be slightly different and may not have all of the necessary assets.
 
-In einem lokalen Magento-Entwicklungssystem fehlen oft die gesamten Bildinhalte. Das macht die Weiterentwicklung 
-schwierig, da alles anders aussieht als im Live-System. Um dieses Problem zu lösen, habe ich mir zwei kleine
-Hacks einfallen lassen:
+One solution to this problem is to load the assets on-the-fly from the live system. 
+This means that the developer can configure their development environment to fetch 
+the assets from the live site when the are needed and store them in the appropriate 
+folder structure. This ensures that the developer is always working with the most 
+up-to-date visuals and can be confident that their code will work as intended when 
+it is deployed to the live site.
 
-Um Bilder, die lokal nicht vorhanden sind, adhoc von einem Live-System nachzulanden, musst Du folgende 
-Anpassung in deinem Code machen:
+## Downloading CMS content
 
-In `magento_root/pub/get.php` suchen wir nach dem Kommentar `// Serve file if it's materialized`. Kurz danach wird
-die Variable `$fileRelativePath` initialisiert. Unmittelbar nach dieser Initialisierung (aktuell in Magento 2.4.3 ist das
-Zeile 48) fügen wir folgendes Snippet ein:
+To reload images that are not locally available adhoc from a live system, you need 
+to make the following adjustment in your code:
+
+In `magento_root/pub/get.php` we look for the comment `//Serve file if it's materialized`. 
+Shortly after that you'll find the variable initialization of `$fileRelativePath`. 
+Immediately after this initialization (currently in Magento 2.4.3 this is
+line 48) we insert the following snippet:
 
     $remoteServerUrl = 'https://example.com/'; 
     if (!is_readable($fileAbsolutePath)) {
@@ -24,19 +34,20 @@ Zeile 48) fügen wir folgendes Snippet ein:
         file_put_contents($fileAbsolutePath, $remoteFile);
     }
 
-Die Variable `$remoteServerUrl` muss Du mit der URL des Live-Servers ersetzen.
+You have to replace the variable value of `$remoteServerUrl` with the URL of the live server.
 
-Nun lädt Dein lokales System fehlende Files einfach aus dem Live-System nach, wenn diese nicht lokal vorhanden sind.
+Now your local system simply loads missing files from the live system if they are not
+available locally.
 
-> *Achtung:*
-> 
-> - Die Dateien werden lokal gespeichert und nur einmal heruntergelanden. Das entlastet das Live-System. könnte aber auf Dauer deine Festplatte füllen.
-> - Diese Änderung darf, sofern die `get.php` im Versionskontrollsystem verwaltet wird, nicht eingecheckt werden!
+> *Attention:*
+>
+> - The files are stored locally and downloaded only once. This relieves the live system. but could fill your hard disk in the long run.
+> - This change must not be checked in, if the `get.php` is managed in the version control system!
 
-## Produktbilder
+## Downloading product images
 
-Produktbilder können im Bulk mit einem Shell-Script heruntergeladen werden. Dieses Script muss im Ordner `magento_root/pub/`
-abgelegt werden.
+Product images can be downloaded in bulk using a shell script. This script must be placed in the folder `magento_root/pub/`.
+folder. Replace LOCAL_URL and REMOTE_URL accordingly.
 
     // downloadProductImages.php
     // file: get product images
@@ -45,9 +56,7 @@ abgelegt werden.
     
     const LOCAL_URL = 'http://localhost';
     const REMOTE_URL = 'https://www.example.com';
-     
-    
-    
+        
     include('../app/bootstrap.php');
     
     $bootstrap = Bootstrap::create(BP, $_SERVER);
@@ -101,15 +110,15 @@ abgelegt werden.
         echo "$counter / $count " . PHP_EOL ;
     }
 
-Dieses Script lädt automatisch alle Produktbilder von allen aktivierten Produkten herunter. Damit es mit den richtigen 
-URLs arbeiten kann, muss im oberen Teil der Datei die beiden Konstanten `LOCAL_URL` und `REMOTE_URL` angepasst werden.
-Zum Ausführen muss man sich auf einer Shell im Magento-Host-System einloggen. Das Script sollte direkt im Ziel-
-Verzeichnis ausgeführt werden:
+This script automatically downloads all product images from all activated products. So that it can work with the correct
+URLs, the two constants `LOCAL_URL` and `REMOTE_URL` must be adjusted in the upper part of the file.
+To run it, you have to log in to a shell in the Magento host system. The script should be executed directly in the target
+directory:
 
     cd magento_root/pub/
     php downloadProductImages.php
 
-> *Achtung:*
+> *Attention:*
 >
-> - Es kann passieren, dass hierbei sehr viele und große Dateien heruntergeladen werden. Der Festplattenspeicher kann knapp werden.
-> - Diese Datei sollte auf keinen Fall in das Versionskontrollsystem eingecheckt werden oder sogar auf einem Live-System ausgerollt werden! 
+> - It may happen that very many and large files are downloaded in the process. The hard disk space can become scarce.
+> - This file should in no case be checked into the version control system or even rolled out on a live system! 

@@ -1,60 +1,60 @@
-% TITLE (DEV-TIPP) Daten aus einer ElasticSearch-Instanz extrahieren
-% DESCRIPTION Mit ein paar einfachen curl-Aufrufen in einer bash, können Daten aus einer ElasticSearch-Instanz extrahiert werden.
+% TITLE (DEV-TIP) Extract data from an ElasticSearch instance.
+% DESCRIPTION With a few simple curl calls in a bash, data can be extracted from an ElasticSearch instance.
 % DATE 6.7.2022
 
-ElasticSearch kommt in immer mehr Webprojekten zum Einsatz. Es ist schnell und effektiv, aber es erschwert
-auch das Debugging, da es eine weitere Technologie-Ebene in den Web-Stack hinzufügt. Magento, eines 
-der verbreitesten e-Commerce-Systeme unterstützt ElasticSearch bereits seit Jahren und seit der Version
-2.4 ist die Verwendung von ElasticSearch sogar zwingend erforderlich.
+ElasticSearch is being used in more and more web projects. It is fast and effective, but it also complicates
+debugging, as it adds another layer of technology to the web stack. Magento, one
+of the most widespread e-commerce systems, has supported ElasticSearch for years, and since version
+2.4, the use of ElasticSearch is even mandatory.
 
-> Wie legt Magento Index-Daten ab?
-> 
-> Kann ich ElasticSearch-Index-Daten abrufen?
-> 
-> Wie debugge ich ElasticSearch-Daten?
-> 
-> Wie lese ich Produktdaten aus ElasticSearch in Magento2 aus?
-> 
+> How does Magento store index data?
+>
+> Can I retrieve ElasticSearch index data?
+>
+> How do I debug ElasticSearch data?
+>
+> How do I read product data from ElasticSearch in Magento2?
+>
 
-Magento legt beispielsweise seine Index-Daten in ElasticSearch ab. Gibt es Probleme bei der Darstellung
-von Produkten im Frontend, weil die indizierten Daten falsch sind, ist das Rätselraten meist vorprogrammiert. 
-Das passiert besonders schnell, wenn neue Produkt-Attribute hinzugefügt werden.
+For example, Magento stores its index data in ElasticSearch. Are there problems with the display of
+of products in the frontend because the indexed data is wrong, the guesswork is usually pre-programmed.
+This happens especially quickly when new product attributes are added.
 
-> Warum ist mein Produkt im Magento2 nicht sichtbar?
-> 
-> Warum ist mein Produkt nicht in der Kategorie sichtbar?
-> 
-> Warum ist mein neues Magento2-Produktattribut nicht sichtbar?
+> Why is my product not visible in Magento2?
+>
+> Why is my product not visible in the category?
+>
+> Why is my new Magento2 product attribute not visible?
 
-Es ist aber oft einfach, die Index-Daten aus der ElasticSearch-Instanz auszulesen oder zu löschen. 
-Mit einigen einfachen curl-Requests auf der Kommandozeile können die indizierten Daten abgefragt werden. 
+However, it is often easy to read or delete the index data from the ElasticSearch instance.
+With some simple curl requests on the command line you can query the indexed data.
 
-**Hinweis:** Sollte am ElasicSearch-Server eine Authententifizierung notwendig sein, dann empfehle ich folgenden
-Link: [https://www.elastic.co/guide/en/elasticsearch/reference/current/http-clients.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/http-clients.html). Dieser erklärt, wie man
-sich per curl ElasticSearch-Server anmeldet.
+**Note:** If authentication is required on the ElasicSearch server, then I recommend the following.
+link: [https://www.elastic.co/guide/en/elasticsearch/reference/current/http-clients.html](https://www.elastic.co/guide/en/elasticsearch/reference/current/http-clients.html). This explains how to
+log in to the ElasticSearch server via curl.
 
-Der Befehl
+The command
 
     curl localhost:9200/_cat/indices?v
 
-listet zunächst alle bekannten Indexes, die in ElasticSearch gespeichert sind. Im Beispiel gehen wir davon
-aus, dass die ElasticSearch-Instanz lokal läuft. In einem docker-Setup würden wir statt "localhost" z.B. 
-den docker-Hostname "elasticsearch" Nutzen. 
+first lists all known indexes stored in ElasticSearch. In the example we assume
+that the ElasticSearch instance is running locally. In a docker setup, instead of "localhost", we would use e.g.
+Use the docker hostname "elasticsearch".
 
-Der Befehl produziert eine Ausgabe wie diese:
+The command produces output like this:
 
-    yellow open   magento_de_thesaurus_20220708_071129        SkZIa-TITaCAHf1s2Re2cg   1   2          0            0       226b           226b
-    green  open   .geoip_databases                            jZnTTcWtR7SdcP_GVwLKNg   1   0         40           40     37.9mb         37.9mb
-    yellow open   magento_de_catalog_category_20220708_071123 nA_GCdhsR4SeFSlG0qUoAw   1   2        121            0        1mb            1mb
-    yellow open   magento_de_catalog_product_20220708_071115  wOBOlZKvRFSZhsfZ8FE0qw   1   2        106            0      130kb          130kb
- 
-Aus dieser Liste können wir den Index-Namen auslesen. Im Magento-Umfeld interessiert uns in der Regal der 
+    yellow open magento_en_thesaurus_20220708_071129 SkZIa-TITaCAHf1s2Re2cg 1 2 0 0 226b 226b
+    green open .geoip_databases jZnTTcWtR7SdcP_GVwLKNg 1 0 40 40 37.9mb 37.9mb
+    yellow open magento_en_catalog_category_20220708_071123 nA_GCdhsR4SeFSlG0qUoAw 1 2 121 0 1mb 1mb
+    yellow open magento_en_catalog_product_20220708_071115 wOBOlZKvRFSZhsfZ8FE0qw 1 2 106 0 130kb 130kb
+
+From this list we can read the index name. In the Magento environment we are interested in the shelf of the
 größten Index: "**magento_de_catalog_category_20220708_071123**".
 
-Mit folgenden Aufruf können wir aus diesem Index die Daten eines bestimmten Produktes anhand der SKU auslesen.
-Die SKU wird dabei als Parameter der "query" übergeben (im Beispiel unten "123456789").
+With the following call we can read the data of a specific product from this index based on the SKU.
+The SKU is passed as a parameter of the "query" (in the example below "123456789").
 
-    curl -XPOST -H 'Content-Type: application/json' localhost:9200/magento_de_catalog_category_20220708_071123/_search?pretty=true -d'
+    curl -XPOST -H 'Content-Type: application/json' localhost:9200/magento_en_catalog_category_20220708_071123/_search?pretty=true -d'
     {
         "query": {
             "query_string": {
@@ -63,10 +63,9 @@ Die SKU wird dabei als Parameter der "query" übergeben (im Beispiel unten "1234
         }
     }'
 
-> Wie setze ich den Index zurück?
+> How do I reset the index?
 
-Viele Probleme lassen sich durch das Zurücksetzen der Indizes lösen. Folgender Befehl weißt ElasticSearch an, alle
-Indizes zu löschen:
+Many problems can be solved by resetting the indexes. The following command tells ElasticSearch to clear all the
+to delete all indexes:
 
     curl -XDELETE localhost:9200/*
-
