@@ -71,6 +71,7 @@ h2 {
     font-size: 140%;
     margin-bottom: 3vh;
     margin-top: 4vh;
+    line-height: 150%;
 }
 
 h3 {
@@ -138,6 +139,8 @@ h1.logo {
     letter-spacing: 4px;
     font-size: 120%;
     display: inline-block;
+    font-weight: bold;
+    text-shadow: none;
 }
 
 .navigation a {
