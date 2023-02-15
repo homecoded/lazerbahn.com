@@ -102,10 +102,22 @@ __prepareContent () {
         cat source/footer.html >> $targetFilename
         __addFileToCleanUpList "pub/$filename-fragment.html"
         __updateMetaTagsInHtmlFile "$file" "$targetFilename"
+        __setCanonicalLink "$targetFilename"
     done
 
     # copy static files
     cp source/index.html pub/index.html
+}
+
+__setCanonicalLink () {
+  htmlFile="$1"
+  echo "        > updating CANONCAL link in $htmlFile"
+  url=$(echo "$htmlFile" | sed -e "s/pub\///g")
+  echo $url
+  url=$(echo "$url" | sed -e "s/\.\///g")
+  echo $url
+  escapedHTML=$(printf '%s\n' "$url" | sed -e 's/[]\/$*.^[]/\\&/g');
+  sed -i -e "s/#FILE_PATH#/$escapedHTML/" "$htmlFile"
 }
 
 __updateMetaTagsInHtmlFile () {
