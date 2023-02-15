@@ -3,20 +3,24 @@
 
 # Manuel Rülke
 
-Ich bin Software Entwickler und mag Automatismen und Simulationen. Ich interessiere mich für Künstliche Intelligenz
-und Grafikprogrammierung. Ich habe viele Jahre als Entwickler für Computerspiele gearbeitet, habe ein Game-Studio
+Ich bin Software Entwickler und bin überzeugt, dass e-Commerce der wichtigste und größte
+Motor für Innovationen im Internet ist. Es macht mir großen Spaß, neue Technologien zu evaluieren und
+und zu implementieren.  Außerdem bin ich ein Fan davon, so viel wie möglich zu automatisieren.
+
 <img src="images/manu.png" alt="Manuel Rülke" style="float: right;margin-left: 4vh;object-fit: none;object-position: 100% 0%;width: 200px;height: 130px;transform: scale(-1, 1);border: 1px solid #ccc;">
-mitgegründet und war Manager bei einer größeren mittelständischen e-Commerce Agentur. Seit 2021 bin ich wieder
-selbstständig um mehr von dem zu machen, was mir Spaß macht und um meine Arbeit besser an meinen Stärken 
-auszurichten:
+In meiner Freizeit interessiere ich mich für Simulationen, künstliche Intelligenz und Grafikprogrammierung.
+Ich habe viele Jahre als Entwickler für Computerspiele gearbeitet, ein Game-Studio mitgegründet und war als 
+Manager bei einer größeren mittelständischen E-Commerce-Agentur tätig.
+
+Seit 2021 bin ich selbstständig, um meine Arbeit noch besser auf meine Stärken auszurichten zu können:
 
 - **2005 bis 2008**: <br>
   Spiele-Entwickler u.a. für Zeal GmbH, www.handy-games.com Gmbh, 10TACLE MOBILE Gmbh, rocketscience 
   games Gmbh
 - **2009 bis 2011**: <br>
-  Rough Sea Games GmbH gegründet (mit Fokus auf Browser-Technologie)
+  Rough Sea Games GmbH gegründet (mit Fokus auf Browser-Technologie), Head of Frontend Development
 - **2011 bis 2019**: <br>
-  Software-Entwickler im e-Commerce
+  Software-Entwickler im e-Commerce (Magento, Magento2, Typo3)
 - **2019 bis 2021**: <br>
   Head of Technology für Sitewards Gmbh und Y1 Digital AG (Management mit Personalverantwortung, 
   Standortaufbau Leipzig)
