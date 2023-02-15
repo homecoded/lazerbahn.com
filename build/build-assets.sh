@@ -108,6 +108,7 @@ __prepareContent () {
     # copy static files
     cp source/index.html pub/index.html
     cp source/robots.txt pub/robots.txt
+    cp source/favicon.ico pub/favicon.ico
 }
 
 __setCanonicalLink () {
