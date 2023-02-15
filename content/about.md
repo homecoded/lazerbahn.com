@@ -12,7 +12,7 @@ In meiner Freizeit interessiere ich mich für Simulationen, künstliche Intellig
 Ich habe viele Jahre als Entwickler für Computerspiele gearbeitet, ein Game-Studio mitgegründet und war als 
 Manager bei einer größeren mittelständischen E-Commerce-Agentur tätig.
 
-Seit 2021 bin ich selbstständig, um meine Arbeit noch besser auf meine Stärken auszurichten zu können:
+Seit 2021 bin ich selbstständig, um mich noch besser auf meine Stärken konzentrieren zu können.
 
 - **2005 bis 2008**: <br>
   Spiele-Entwickler u.a. für Zeal GmbH, www.handy-games.com Gmbh, 10TACLE MOBILE Gmbh, rocketscience 
