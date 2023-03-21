@@ -22,14 +22,6 @@ window.onload = (function () {
         [2, 3, 7, 6],
         [4, 5, 1, 0]
       ],
-      NORMALS = [
-        [4, 0],
-        [0, 1],
-        [0, 4],
-        [1, 0],
-        [0, 2],
-        [2, 0]
-      ],
       ASCII_TABLE = ' ·-:=*##',
       ASCII_GRAPHICS = [],
       objects3d = [],
