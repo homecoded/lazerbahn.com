@@ -1,4 +1,4 @@
-% TITLE Debugging and Customizing Order Success Page in Magento2
+% TITLE (DEV-TIP) Debugging and Customizing Order Success Page in Magento2
 % DESCRIPTION Accessing the order success page requires a successful order. Here is a shortcut to skip the order process.  
 % DATE 2.3.2023
 
