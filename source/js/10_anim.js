@@ -5,7 +5,7 @@ window.onload = (function () {
       textModeContext = textModeCanvas.getContext('2d'),
       CANVAS_WIDTH = pixelCanvas.width = 32,
       CANVAS_HEIGHT = pixelCanvas.height = 32,
-      FONT_SIZE = 16,
+      FONT_SIZE = 32,
       TEXT_CANVAS_WIDTH = textModeCanvas.width = FONT_SIZE * CANVAS_WIDTH,
       TEXT_CANVAS_HEIGHT = textModeCanvas.height = FONT_SIZE * CANVAS_HEIGHT,
       SCREEN_DIST = 2500,
