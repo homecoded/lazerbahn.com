@@ -33,9 +33,11 @@ __prepareBlogNavigation () {
         date=$(__getMetaTagFromMarkdownFile $file "DATE")
         url=$(__getHtmlPathForMarkdownFile $file)
 
-        echo -e "### // [ $title ]($url) \n" >> content/blog.md
+        echo "<div class=\"blog--entry\">" >> content/blog.md
+        echo -e "### [ $title ]($url) \n" >> content/blog.md
         echo -e "$date\n" >> content/blog.md
         echo -e "$description\n" >> content/blog.md
+        echo "</div>" >> content/blog.md
     done
     __addFileToCleanUpList "content/blog.md"
 }

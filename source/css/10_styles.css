@@ -76,7 +76,6 @@ h2 {
 
 h3 {
     font-size: 125%;
-    text-transform: uppercase;
     margin-bottom: 2vh;
     margin-top: 2vh;
 }
@@ -131,7 +130,6 @@ h1.logo {
     padding: 2vh;
     z-index: 3;
     position: relative;
-    margin-bottom: 2vh;
 }
 
 .navigation .logo {
@@ -155,7 +153,6 @@ h1.logo {
 
 
 .menu {
-    display: inline-block;
     font-family: monospace;
 }
 
@@ -165,19 +162,22 @@ h1.logo {
     clear: both;
 }
 .menu a {
-    font-size: 80%;
     text-transform: uppercase;
     text-decoration: none;
+    color: #ffffff;
 }
 
 .menu--main {
     margin-top: 0;
+    margin: 0 auto;
+    text-align: right;
+    position: relative;
+    z-index: 2;
 }
 
 .menu--main-content {
-    margin: 0;
-    padding-left: 0;
-    text-align: right;
+    background: rgb(35, 42, 46);
+    background: linear-gradient(90deg, rgb(73, 91, 97) 0%, rgb(57, 68, 70) 35%, rgb(42, 52, 58) 100%);
 }
 
 .menu--footer {
@@ -203,7 +203,7 @@ h1.logo {
 .content {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 2vh 2vh;
+    padding: 4vh 2vh;
     position: relative;
 }
 

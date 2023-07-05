@@ -4,7 +4,6 @@
     background: #316f8b;
     background: radial-gradient(circle at 30%, rgb(100, 147, 174)  0%, rgb(67, 116, 146) 35%, rgb(50, 110, 140) 50%, rgb(46, 101, 130) 100%);
     position: relative;
-    margin-bottom: 4vh;
     margin-top: -4vh;
 }
 
@@ -17,7 +16,7 @@
 
 .statement .manu {
     position: absolute;
-    bottom: -9%;
+    bottom: -8%;
     left: 20%;
     width: 20%;
     height: 60%;
@@ -26,6 +25,7 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: bottom;
+    z-index: 1;
 }
 
 .statement * {

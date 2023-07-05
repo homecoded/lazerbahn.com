@@ -2,6 +2,8 @@
 % DESCRIPTION An oneliner can be used to easily optimize large image data on the command line.
 % DATE 24.8.2022
 
+# Optimize a large amount of images on the command line. 
+
 > How do I find large files on the command line under Linux?
 
 With the command "find" not only files can be found by their name, but also by other

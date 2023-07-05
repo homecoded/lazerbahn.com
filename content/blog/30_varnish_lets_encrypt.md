@@ -28,7 +28,7 @@ set up a pipe in varnish to pass the calls to Apache:
         }
     }
 
-While this won't hurt, this alone does not help in my case. So, I specified Apache's
+While this won't hurt, this alone does not help in my case. So, I specified Apachess
 new port in the certbot parameters, additionally. In my case that was 8080.
 
 I change the cronjob to call renew with a port setting: 
