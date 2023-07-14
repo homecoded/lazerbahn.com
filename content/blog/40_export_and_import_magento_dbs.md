@@ -19,7 +19,7 @@ the database.
 
 To get around this, you can use the following line of bash script:
 
-    mysqldump --single-transaction -u USERNAME -p DATABSE -h HOST --triggers | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | gzip > magento_.`date +"%Y%m%d"`.sql.gz
+    mysqldump --single-transaction --no-tablespaces -u USERNAME -p DATABSE -h HOST --triggers | sed -e 's/DEFINER[ ]*=[ ]*[^*]*\*/\*/' | gzip > magento_.`date +"%Y%m%d"`.sql.gz
 
 Make sure to replace USERNAME, DATABASE and HOST with your actual values, of course. I took this of code line from 
 [Sandor Czettner's Blog](https://www.czettner.com/2019/10/10/magento-2-mysqldump.html) and modified it a little. 
