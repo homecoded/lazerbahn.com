@@ -6,8 +6,8 @@
 
 When you export a Magento database and attempt to import it on another machine, you might encounter the following error:
 
-    ERROR 1227 (42000) at line XXXX: 
-    Access denied; you need (at least one of) the SUPER privilege(s) for this operation
+> ERROR 1227 (42000) at line XXXX: 
+> Access denied; you need (at least one of) the SUPER privilege(s) for this operation
 
 The wording may vary slightly, but essentially it's the same error everywhere. This error occurs due to the usage of 
 definers in Magento's database triggers. Definers are database user accounts that require specific rights to create 
@@ -24,6 +24,15 @@ To get around this, you can use the following line of bash script:
 Make sure to replace USERNAME, DATABASE and HOST with your actual values, of course. I took this of code line from 
 [Sandor Czettner's Blog](https://www.czettner.com/2019/10/10/magento-2-mysqldump.html) and modified it a little. 
 The line exports the database and removes the DEFINER definitions.
+
+I'm using the switch `--no-tablespaces` to omit this error:
+
+> Access denied; you need (at least one of) the PROCESS privilege(s) for this operation when trying to dump tablespaces
+
+Normally, you won't need the tablespace data if you want to create a dump that is transferred from one Magento
+instance to another. The option skips writing of "CREATE LOGFILE GROUP" amd "CREATE TABLESPACE" statements in the dump.
+The first of the two is for maintaining Redo-logs that ae supposed to limit possible data loss. The other of the two
+is for physically saving the tables to the hard drive. You don't need this data in a dump.
     
 ## Step 2:  Importing a Magento Database
 
