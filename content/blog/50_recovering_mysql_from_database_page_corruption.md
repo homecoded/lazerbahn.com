@@ -1,6 +1,6 @@
 % TITLE (DEV-TIP) Recovering mysql from 'Database Page Corruption'
 % DESCRIPTION Mysql server crashed and would not restart. How can I fix the page corruption on startup?   
-% DATE 13.3.2024
+% DATE 11.7.2024
 
 # Recovering mysql from 'Database Page Corruption'
 
