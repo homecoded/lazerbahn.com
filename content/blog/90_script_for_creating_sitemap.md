@@ -12,7 +12,7 @@ To properly test any changes I do the sitemap creation, I need something to conv
 this little script
 
     <?php
-    // create-sitemap.php
+    // file: create-sitemap.php 
     use Magento\Framework\App\Bootstrap;
     include('app/bootstrap.php');
     
@@ -22,10 +22,9 @@ this little script
     $state = $objectManager->get('Magento\Framework\App\State');
     $state->setAreaCode('frontend');
     
-    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-    
     $sitemap = $objectManager->create('Magento\Sitemap\Model\Sitemap');
-    $sitemap->setSitemapFilename('debug-sitemap.xml');
+    $sitemap->setSitemapPath('.');
+    $sitemap->setSitemapFilename('debug_sitemap.xml');
     $sitemap->generateXml();
 
 Put this script inside the Magento root folder and run it like this:
