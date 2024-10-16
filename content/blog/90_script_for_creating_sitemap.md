@@ -33,5 +33,10 @@ Put this script inside the Magento root folder and run it like this:
 
 This will trigger the sitemap generation immediately.
 
+## Trigger sitemap generation via AdminHTML
+
+You can also trigger sitemap generation via Magento backend under Marketing > SEO & Search > Site Map.
+Use "Add Sitemap" to create a new sitemap and then hit "Generate" whenever you need a new version.
+
 Happy coding,
 Manuel
