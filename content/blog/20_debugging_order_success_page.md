@@ -43,3 +43,5 @@ of `vendor/magento/module-checkout/Model/Session.php` in my local development en
 
 Now calling `//<local-magento-host>/checkout/onepage/success/` will always show a success page.
 
+Happy coding,
+Manuel

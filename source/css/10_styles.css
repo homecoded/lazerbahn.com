@@ -22,7 +22,6 @@ body {
 }
 
 a {
-    text-shadow: 0 0 2px #888;
     text-decoration: none;
     color: #333;
     border-bottom: 2px solid #ccc;
@@ -184,6 +183,15 @@ h1.logo {
     margin-bottom: 2vh;
 }
 
+.menu--footer a {
+    color: #111;
+    text-shadow: none;
+}
+
+.menu--footer small {
+    font-size: 85%;
+}
+
 .menu ul {
     list-style-type: none;
     display: inline-block;
@@ -242,4 +250,13 @@ ol {
 
 ol li {
     line-height: 170%;
+}
+
+.blog--entry p {
+    padding-left: 5vw;
+    padding-bottom: 1vh;
+}
+
+.blog--entry a {
+    font-weight: bold;
 }

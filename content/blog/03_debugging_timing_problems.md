@@ -60,3 +60,6 @@ I added the following lines to the file `pub/static.php` right after the opening
 By delaying the loading of (only) jQuery, I was able to ensure that any plugins with faulty dependencies would immediately 
 fail. This also works with other files. By causing the issue to occur every time, I was able to debug and fix the 
 dependency declaration, confident that it would work consistently on the live system.
+
+Happy coding,
+Manuel

@@ -105,3 +105,6 @@ After that you need to do
     bin/magento indexer:reindex
 
 and now all the data should be there.
+
+Happy coding,
+Manuel

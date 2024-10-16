@@ -122,3 +122,6 @@ directory:
 >
 > - It may happen that very many and large files are downloaded in the process. The hard disk space can become scarce.
 > - This file should in no case be checked into the version control system or even rolled out on a live system! 
+
+Happy coding,
+Manuel

@@ -48,3 +48,6 @@ By following these steps, you can successfully import a Magento database without
 Special thanks to Sandor Czettner for providing the initial script and saving us from potential headaches.
 
 **Note:** Please ensure that you have the necessary backups and exercise caution while performing database operations.
+
+Happy coding,
+Manuel

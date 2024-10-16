@@ -102,3 +102,6 @@ Have fun with the developer interview and good luck with identifying the right c
 Seriously recommended reading:
 
 - [The Guerrilla Guide To Interviewing 3.0 by Joel Spolsky](https://www.joelonsoftware.com/2006/10/25/the-guerrilla-guide-to-interviewing-version-30/)
+
+Happy coding,
+Manuel

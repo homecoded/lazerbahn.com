@@ -36,3 +36,6 @@ I change the cronjob to call renew with a port setting:
     certbot renew -q -preferred-challenges http --http-01-port 8080
 
 Now, the certificates are getting recreated as expected.
+
+Happy coding,
+Manuel

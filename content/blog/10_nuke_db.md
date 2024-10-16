@@ -54,4 +54,6 @@ Or in a one-liner:
 
     SET FOREIGN_KEY_CHECKS = 0; SELECT GROUP_CONCAT(table_name) INTO @tables FROM information_schema.tables WHERE table_schema = (SELECT DATABASE()); SET @tables = CONCAT('DROP TABLE IF EXISTS ', @tables); PREPARE stmt FROM @tables; EXECUTE stmt; DEALLOCATE PREPARE stmt; SET FOREIGN_KEY_CHECKS = 1;
 
-Happy cleaning databases!
+Happy cleaning databases,
+Manuel
+

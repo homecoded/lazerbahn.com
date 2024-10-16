@@ -95,3 +95,6 @@ Now, this was quite some excitement for such a lovely night. I'm happy I could r
 gigabytes of databases. It's still a bit dangerous to not rebuild everything, but I'm taking the chances here.
 Rebuilding everything would have probably taken a few more hours. With the quick repair, the site was only down for about
 two or three hours. I was informed after 1h of downtime.
+
+Happy coding,
+Manuel
