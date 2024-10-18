@@ -11,8 +11,8 @@ Currently, I'm using Version: 6.4.7.2 of LibreOffice and I've been struggling wi
 
 I'm not the only one with this problem, apparently:
 
-- https://askubuntu.com/questions/1275213/libreofficecalc-window-is-shrunk-to-a-line-and-is-unclickable
-- https://forums.freebsd.org/threads/libreoffice-window-being-really-small-when-started.88163/
+- [https://askubuntu.com/questions/1275213/libreofficecalc-window-is-shrunk-to-a-line-and-is-unclickable](https://askubuntu.com/questions/1275213/libreofficecalc-window-is-shrunk-to-a-line-and-is-unclickable)
+- [https://forums.freebsd.org/threads/libreoffice-window-being-really-small-when-started.88163/](https://forums.freebsd.org/threads/libreoffice-window-being-really-small-when-started.88163/)
 
 Well, I'm solving the problem with two small scripts that get started on when I begin to work:
 
