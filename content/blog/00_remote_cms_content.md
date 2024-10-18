@@ -2,30 +2,29 @@
 % DESCRIPTION In the local development environment, all images from the live environment are usually missing. With a small hack you can solve this problem.
 % DATE 4.11.2021
 
-# Download Missing Images in Magento On-The-Fly
+# Download Missing Images in Magento Development Environment On-The-Fly
 
-One common problem that software developers may encounter when working on a website 
-or web application is that their local development environment may not have all of the 
-assets, such as images, that are needed to properly render the site. 
+One common problem that we, software developers, often encounter is that our local 
+development environment is missing some important assets.  
 This can be especially frustrating when working with a team, as each person's local 
-environment may be slightly different and may not have all of the necessary assets.
+environment may look slightly different.
 
-One solution to this problem is to load the assets on-the-fly from the live system. 
-This means that the developer can configure their development environment to fetch 
-the assets from the live site when the are needed and store them in the appropriate 
-folder structure. This ensures that the developer is always working with the most 
-up-to-date visuals and can be confident that their code will work as intended when 
-it is deployed to the live site.
+One solution to this problem is to simply load the assets on-the-fly from the live system. 
+This means that we configure our development environment to fetch 
+the assets from the live site when they are needed. We store them in the appropriate 
+folder structure for later use. This ensures that we are always working with the most 
+up-to-date visuals and can be confident that the site looks the same locally und on 
+live/staging.
 
 ## Downloading CMS content
 
-To reload images that are not locally available adhoc from a live system, you need 
-to make the following adjustment in your code:
+To reload images that are not locally available adhoc from a live system, we 
+make the following adjustments in our code:
 
 In `magento_root/pub/get.php` we look for the comment `//Serve file if it's materialized`. 
 Shortly after that you'll find the variable initialization of `$fileRelativePath`. 
-Immediately after this initialization (currently in Magento 2.4.3 this is
-line 48) we insert the following snippet:
+Immediately after this initialization (currently in Magento 2.4.7 this is
+line 59) we insert the following snippet:
 
     $remoteServerUrl = 'https://example.com/'; 
     if (!is_readable($fileAbsolutePath)) {
@@ -34,19 +33,20 @@ line 48) we insert the following snippet:
         file_put_contents($fileAbsolutePath, $remoteFile);
     }
 
-You have to replace the variable value of `$remoteServerUrl` with the URL of the live server.
+We have to replace the variable value of `$remoteServerUrl` with the URL of the live server, of course.
 
 Now your local system simply loads missing files from the live system if they are not
 available locally.
 
 > *Attention:*
 >
-> - The files are stored locally and downloaded only once. This relieves the live system. but could fill your hard disk in the long run.
-> - This change must not be checked in, if the `get.php` is managed in the version control system!
+> - The files are stored locally and downloaded only once. So the impact on the remote server is minimal. 
+> - Yet, this could fill your hard disk, eventually.
+> - Also: This change MUST NOT be commited or pushed, if the `get.php` is managed in the version control system!
 
 ## Downloading product images
 
-Product images can be downloaded in bulk using a shell script. This script must be placed in the folder `magento_root/pub/`.
+Product images can be downloaded in bulk using a shell script. We place this script in the folder `magento_root/pub/`.
 folder. Replace LOCAL_URL and REMOTE_URL accordingly.
 
     // downloadProductImages.php
@@ -111,9 +111,9 @@ folder. Replace LOCAL_URL and REMOTE_URL accordingly.
     }
 
 This script automatically downloads all product images from all activated products. So that it can work with the correct
-URLs, the two constants `LOCAL_URL` and `REMOTE_URL` must be adjusted in the upper part of the file.
-To run it, you have to log in to a shell in the Magento host system. The script should be executed directly in the target
-directory:
+URLs, we have to adjust the two constants `LOCAL_URL` and `REMOTE_URL` in the upper part of the file.
+To run it, we have to start a shell in the Magento host system (local or container). In the target directory, we simply 
+run:
 
     cd magento_root/pub/
     php downloadProductImages.php
@@ -121,7 +121,7 @@ directory:
 > *Attention:*
 >
 > - It may happen that very many and large files are downloaded in the process. The hard disk space can become scarce.
-> - This file should in no case be checked into the version control system or even rolled out on a live system! 
+> - This file should in no case be commited/pushed into the version control system or even rolled out on a live system! 
 
 Happy coding,
 Manuel
