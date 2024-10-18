@@ -26,11 +26,15 @@ Seit 2021 bin ich selbstständig, um mich noch besser auf meine Stärken konzent
   Standortaufbau Leipzig)
 - **ab 2021**: <br>
   Selbstständiger Software-Entwickler und Berater
+- **ab 2023**: <br>
+  Geschäftsführer der Triplewood GmbH & Co. KG
 
 Ich freue mich immer, wenn ich mein Wissen weitergeben kann oder über meine Ansichten sprechen darf. Ich schreibe 
 Artikel für Fachmagazine halte Vorträge auf fachspezifischen Konferenzen oder Meetups. Hier sind ein paar Beispiele:
 
-- [Deine KI ist künstlich, aber nicht intelligent](https://www.youtube.com/watch?v=hAcWXIEKzJE) - Softwerkskammer 
-  Thüringen
-- [NextGen e-Commerce: Conversational Commerce with Magento](https://vimeo.com/280215750) - MeetMagento DE
+- [Deine KI ist künstlich, aber nicht intelligent](https://www.youtube.com/watch?v=hAcWXIEKzJE) - (Vortrag - Deutsch) Softwerkskammer 
+  Thüringen 2019
+- [NextGen e-Commerce: Conversational Commerce with Magento](https://vimeo.com/280215750) - (Vortrag - Englisch) MeetMagento DE 2018
+- **SCREENGUIDE 25** (03/2015) "Browser-Demos: Die Kunst aus Code" (Fachartikel über Echtzeit-Animationen als Kunst)
+- **SCREENGUIDE 24** (11/2014) "Audio-Hacks mit JavaScript" (Fachartikel über Bytebeat-Techniken)
 
