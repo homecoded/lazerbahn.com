@@ -207,6 +207,8 @@ __cleanUpFiles () {
     done
     echo ""
     echo "    > ${#filesToCleanUp[@]} files deleted."
+
+    rm -rf pub/blog-drafts
 }
 
 echo "build.sh: Command line options"
