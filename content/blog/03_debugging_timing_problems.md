@@ -1,4 +1,4 @@
-% TITLE (DEV-TIP) Debugging Racing Conditions in Magento In JavaScript
+% TITLE (DEV-TIP) Debugging racing conditions in Magento2 in JavaScript
 % DESCRIPTION Racing conditions are hard to debug because they often cannot be recreated consistently. Here is how I tackled one of those cases.  
 % DATE 12.12.2021
 

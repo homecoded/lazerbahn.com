@@ -1,4 +1,4 @@
-% TITLE (DEV-TIP) Verifying Data From an ElasticSearch Instance Working With Magento 2
+% TITLE (DEV-TIP) Verifying data from an ElasticSearch instance working with Magento2
 % DESCRIPTION With a few simple curl calls in a bash, data can be extracted from an ElasticSearch instance.
 % DATE 6.7.2022
 
