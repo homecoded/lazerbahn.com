@@ -2,6 +2,8 @@
 % DESCRIPTION Racing conditions are hard to debug because they often cannot be recreated consistently. Here is how I tackled one of those cases.  
 % DATE 12.12.2021
 
+[<< Back to Overview](../blog.html)
+
 # Debugging Racing Conditions in Magento In JavaScript
 
 Racing conditions in web development refer to scenarios where the outcome of a task depends on the 

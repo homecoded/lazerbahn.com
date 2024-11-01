@@ -2,6 +2,8 @@
 % DESCRIPTION Exporting and Importing Magento databases has its pitfalls. Here's how you do it without falling into a trap.  
 % DATE 28.6.2023
 
+[<< Back to Overview](../blog.html)
+
 # Exporting and Importing Magento DBs
 
 When you export a Magento database and attempt to import it on another machine, you might encounter the following error:

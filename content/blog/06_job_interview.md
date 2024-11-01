@@ -2,6 +2,8 @@
 % DESCRIPTION I did more job interviews than I am able to recall. Here is a list of things I that helped me find the right candidates.
 % DATE 9.1.2022
 
+[<< Back to Overview](../blog.html)
+
 # Strategies for the getting the most out of developer job interviews
 
 As the Head of Technology at Y1 Digital AG, it was my job to hire and train new team members. And let me tell you, 

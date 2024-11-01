@@ -2,6 +2,8 @@
 % DESCRIPTION When I drag LibreOffice windows from full-size view to another monitor, they frequently collapse to a small line and become almost invisible. I wrote a small script that makes sure they always remain clickable. Here it is:
 % DATE 17.10.2024
 
+[<< Back to Overview](../blog.html)
+
 # How to stop LibreOffice windows from shrinking to a very small line on Linux
 
 When I move a LibreOffice windows (especially Calc) from full-width on one screen to another the window resizes to

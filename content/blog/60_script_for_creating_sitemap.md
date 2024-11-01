@@ -2,6 +2,8 @@
 % DESCRIPTION How to create  Magento sitemap programmatically: The Magento2 sitemap can only be created through cron-jobs. I wrote a little script that makes it possible to start sitemap creation at will, which is very useful for debugging.   
 % DATE 15.10.2024
 
+[<< Back to Overview](../blog.html)
+
 # How to create Magento2 sitemap programmatically
 
 I need to write a filter function for the sitemap for one of my clients. They are using a "private catalog" extension

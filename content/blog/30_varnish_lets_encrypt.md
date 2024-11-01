@@ -2,6 +2,8 @@
 % DESCRIPTION After installing varnish you may experience problems with Let's Encrypt renewal failures. Here's what you need to do.  
 % DATE 28.3.2023
 
+[<< Back to Overview](../blog.html)
+
 # Making varnish, Apache and Let's Encrypt play nicely
 
 After installing varnish all calls go to a nginx proxy. Certbot works on the Apache config to do verification

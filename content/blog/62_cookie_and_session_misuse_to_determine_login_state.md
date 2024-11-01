@@ -2,6 +2,8 @@
 % DESCRIPTION To determine if a user is logged in I usually use the customer-session object. Yet, this leads to an error in PHP Mess Detector: CookieAndSessionMisuse. Here's how to avoid that.
 % DATE 29.10.2024
 
+[<< Back to Overview](../blog.html)
+
 # How to determine if a user is logged in without facing a PHPMD.CookieAndSessionMisuse in Magento 2
 
 Every now and then, I need to check if I’m dealing with a logged-in user in Magento 2. If I rely on 

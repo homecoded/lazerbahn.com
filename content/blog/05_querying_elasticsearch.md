@@ -2,6 +2,8 @@
 % DESCRIPTION With a few simple curl calls in a bash, data can be extracted from an ElasticSearch instance.
 % DATE 6.7.2022
 
+[<< Back to Overview](../blog.html)
+
 # Verifying Data From an ElasticSearch Instance Working With Magento 2
 
 Elasticsearch is a powerful search engine and database that is often used in web development to 

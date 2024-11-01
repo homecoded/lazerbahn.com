@@ -2,6 +2,8 @@
 % DESCRIPTION A little while back I needed to reset a database and I did not want to mess with the uses and access rights. So, I made a script that gets rid of all content in the database. 
 % DATE 24.1.2022
 
+[<< Back to Overview](../blog.html)
+
 # Deleting all tables in a mySQL database
 
 Firstly, let's say you want a bash script. Mine has three parameters (user, password, databasename) and I use it 

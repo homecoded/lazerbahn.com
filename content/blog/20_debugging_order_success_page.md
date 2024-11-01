@@ -2,6 +2,8 @@
 % DESCRIPTION Accessing the order success page requires a successful order. Here is a shortcut to skip the order process.  
 % DATE 2.3.2023
 
+[<< Back to Overview](../blog.html)
+
 # Debugging and Customizing Order Success Page in Magento 2
 
 The order success page only shows after completing a successful order. Without that order the page redirects, 

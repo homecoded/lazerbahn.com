@@ -2,6 +2,8 @@
 % DESCRIPTION Mysql server crashed and would not restart. How can I fix the page corruption on startup?   
 % DATE 11.7.2024
 
+[<< Back to Overview](../blog.html)
+
 # Recovering mysql from 'Database Page Corruption'
 
 One fine day, pretty late at night, I am being called up by one of my consulting clients that their site is down. 

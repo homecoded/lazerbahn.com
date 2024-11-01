@@ -64,6 +64,7 @@ h1 {
     padding-bottom: 4vh;
     line-height: 120%;
     border-bottom: 2px solid #999;
+    text-align: center;
 }
 
 h2 {
@@ -151,7 +152,7 @@ h1.logo {
 
 
 .menu {
-    font-family: monospace;
+    font-family: Consolas, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", Monaco, "Courier New", Courier, monospace;
 }
 
 .menu:after {
@@ -204,6 +205,22 @@ h1.logo {
 .menu--footer a {
     color: #111;
     text-shadow: none;
+}
+
+.menu--footer--tracker {
+    font-size: 70%;
+    color: #444;
+    font-family: 'Montserrat', sans-serif;
+    padding-top: 2vh;
+}
+
+.menu--footer--tracker a {
+    text-transform: none;
+    border-bottom: none;
+}
+
+.menu--footer--tracker a:hover {
+    font-weight: bold;
 }
 
 .menu--footer small {

@@ -2,6 +2,8 @@
 % DESCRIPTION In the local development environment, all images from the live environment are usually missing. With a small hack you can solve this problem.
 % DATE 4.11.2021
 
+[<< Back to Overview](../blog.html)
+
 # Download Missing Images in Magento Development Environment On-The-Fly
 
 One common problem that we, software developers, often encounter is that our local 
