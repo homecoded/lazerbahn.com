@@ -45,3 +45,11 @@ Now calling `//<local-magento-host>/checkout/onepage/success/` will always show 
 
 Happy coding,
 Manuel
+
+### Update [2024-11-01]: 
+
+The proposed changes in the constructor of `Session.php` only work if no customizations exist for the checkout
+success page. You may need to add more settings or perform additional initializations to make it work. 
+I just stumbled over some custom Google Analytics code that causes errors on the checkout-success page when I 
+initialize Session as described. In this particular case, commenting out offending code solves the problem. So, if you
+try this 'trick' as well, proceed with caution.
