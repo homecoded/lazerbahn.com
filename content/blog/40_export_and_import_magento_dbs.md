@@ -1,5 +1,5 @@
 % TITLE (DEV-TIP) Exporting and Importing Magento 2 DBs
-% DESCRIPTION Exporting and Importing Magento databases has its pitfalls. Here's how you do it without falling into a trap.  
+% DESCRIPTION Exporting and Importing Magento databases has its pitfalls. Here's how you do it without falling into a trap. #dump #mysqldump  
 % DATE 28.6.2023
 
 [<< Back to Overview](../blog.html)
