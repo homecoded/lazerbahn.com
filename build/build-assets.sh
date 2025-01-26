@@ -35,7 +35,7 @@ __prepareBlogNavigation () {
         url=$(__getHtmlPathForMarkdownFile $file)
 
         echo "<div class=\"blog--entry\">" >> content/blog.md
-        echo -e "### <strong>$counter</strong>. [ $title ]($url) \n" >> content/blog.md
+        echo -e "<h3 role="link"><strong>$counter</strong>. [ $title ]($url) </h3>\n" >> content/blog.md
         echo -e "**$date**\n" >> content/blog.md
         echo -e "$description\n" >> content/blog.md
         echo "</div>" >> content/blog.md
