@@ -6,6 +6,8 @@
 
 # How to create Magento2 sitemap programmatically
 
+#DATE#
+
 I need to write a filter function for the sitemap for one of my clients. They are using a "private catalog" extension
 that hides certain parts of a store for certain customer groups. Unfortunately, that extension does not adapt 
 Magento's sitemap-creation functionality. All products are in the sitemap regardless of visibility.

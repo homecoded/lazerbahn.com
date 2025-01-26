@@ -1,5 +1,5 @@
 % TITLE (DEV-TIP) Optimize a large amount of images on the command line.
-% DESCRIPTION An oneliner can be used to easily optimize large image data on the command line.
+% DESCRIPTION An oneliner can be used to easily optimize large image data on the command line with imagemagick.
 % DATE 24.8.2022
 
 [<< Back to Overview](../blog.html)
@@ -27,6 +27,11 @@ will install it (if we have a system with apt support). The following command
 resizes a file to a maximum edge length (1200px in the example):
 
     convert -resize "1200>" test.jpg
+    magick convert -resize "1200>" test.jpg
+    magick -resize "1200>" test.jpg
+  
+**Note:** The correct syntax will depend on your Image Magick version. Refer to 
+https://imagemagick.org/script/convert.php if in doubt.
 
 Combining both results in:
 

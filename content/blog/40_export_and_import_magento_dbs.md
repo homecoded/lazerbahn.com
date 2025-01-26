@@ -6,6 +6,8 @@
 
 # Exporting and Importing Magento DBs
 
+#DATE#
+
 When you export a Magento database and attempt to import it on another machine, you might encounter the following error:
 
 > ERROR 1227 (42000) at line XXXX: 

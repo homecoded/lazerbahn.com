@@ -6,6 +6,8 @@
 
 # How to stop LibreOffice windows from shrinking to a very small line on Linux
 
+#DATE#
+
 When I move a LibreOffice windows (especially Calc) from full-width on one screen to another the window resizes to
 a vertical dark line. The dark line is almost invisible on my dark background. This is very annoying. 
 Why do LibreOffice windows collapse to such a small size anyway? 

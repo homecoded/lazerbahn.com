@@ -6,6 +6,8 @@
 
 # How to determine if a user is logged in without facing a PHPMD.CookieAndSessionMisuse in Magento 2
 
+#DATE#
+
 Every now and then, I need to check if I’m dealing with a logged-in user in Magento 2. If I rely on 
 the familiar `Magento\Customer\Model\Session::isLoggedIn` method, though, PHPMD (PHP Mess Detector) 
 greets me with an error, since the code I'm working on is rarely part of the "HTML presentation layer."

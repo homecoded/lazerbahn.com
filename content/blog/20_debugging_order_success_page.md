@@ -6,6 +6,8 @@
 
 # Debugging and Customizing Order Success Page in Magento 2
 
+#DATE#
+
 The order success page only shows after completing a successful order. Without that order the page redirects, 
 and you won't be able to see it. Yet, doing a 'quick order' over and over just to check if the order success 
 page finally looks the way it should is an incredible waste of time.  

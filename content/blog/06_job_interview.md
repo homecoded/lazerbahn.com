@@ -6,6 +6,8 @@
 
 # Strategies for the getting the most out of developer job interviews
 
+#DATE#
+
 As the Head of Technology at Y1 Digital AG, it was my job to hire and train new team members. And let me tell you, 
 it's not easy finding the right fit. That's why I've found that the best way to evaluate candidates is through a 
 combination of guided conversation and the right hands-on exercises. 

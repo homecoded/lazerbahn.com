@@ -6,6 +6,8 @@
 
 # Download Missing Images in Magento Development Environment On-The-Fly
 
+#DATE#
+
 One common problem that we, software developers, often encounter is that our local 
 development environment is missing some important assets.  
 This can be especially frustrating when working with a team, as each person's local 

@@ -24,8 +24,9 @@ __prepareBlogNavigation () {
     echo "% DESCRIPTION Übersicht über alle Blogposts in chronologischer Reihenfolge" >> content/blog.md
 
     cat content/blog/stubs/blog.md >> content/blog.md
+    counter=1
 
-    find content/blog -type f -print0 | xargs -0 ls -v | while read file
+    find content/blog -maxdepth 1 -type f -print0 | xargs -0 ls -v | tac | while read file
     do
         echo "blog post $file"
         title=$(__getMetaTagFromMarkdownFile $file "TITLE")
@@ -34,10 +35,11 @@ __prepareBlogNavigation () {
         url=$(__getHtmlPathForMarkdownFile $file)
 
         echo "<div class=\"blog--entry\">" >> content/blog.md
-        echo -e "### [ $title ]($url) \n" >> content/blog.md
-        echo -e "$date\n" >> content/blog.md
+        echo -e "### <strong>$counter</strong>. [ $title ]($url) \n" >> content/blog.md
+        echo -e "**$date**\n" >> content/blog.md
         echo -e "$description\n" >> content/blog.md
         echo "</div>" >> content/blog.md
+        counter=$((counter + 1))
     done
     __addFileToCleanUpList "content/blog.md"
 }

@@ -6,6 +6,8 @@
 
 # Deleting all tables in a mySQL database
 
+#DATE#
+
 Firstly, let's say you want a bash script. Mine has three parameters (user, password, databasename) and I use it 
 like this:
 

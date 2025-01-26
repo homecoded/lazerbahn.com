@@ -6,6 +6,8 @@
 
 # Verifying Data From an ElasticSearch Instance Working With Magento 2
 
+#DATE#
+
 Elasticsearch is a powerful search engine and database that is often used in web development to 
 provide fast and accurate search results. It is built on top of the Apache Lucene library, and is 
 known for its ability to handle large volumes of data and provide fast search performance.

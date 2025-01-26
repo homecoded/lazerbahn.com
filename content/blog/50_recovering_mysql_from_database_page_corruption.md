@@ -6,6 +6,8 @@
 
 # Recovering mysql from 'Database Page Corruption'
 
+#DATE#
+
 One fine day, pretty late at night, I am being called up by one of my consulting clients that their site is down. 
 It's a Shopware 6 shop on an Ubuntu 22.04 LTS server and the main developer on the project has already tried to restart 
 the mysql service and the whole server several times to no avail. 

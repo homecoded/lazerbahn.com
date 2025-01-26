@@ -6,6 +6,8 @@
 
 # Making varnish, Apache and Let's Encrypt play nicely
 
+#DATE#
+
 After installing varnish all calls go to a nginx proxy. Certbot works on the Apache config to do verification
 challenges, which fail after installing varnish. The challenges go to the nginx proxy and it doesn't know what
 to do. The documentation ([here](https://docs.varnish-software.com/tutorials/hitch-letsencrypt/])) recommends to 
