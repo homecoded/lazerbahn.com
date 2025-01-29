@@ -8,12 +8,13 @@
 
 #DATE#
 
-While implementing the self-service password reset feature via Microsoft Entra, I encounter the infamous 
-"Invalid STS Request" error. It’s a confusing issue because, for the longest time, I cannot for the life of me  
-figure out a specific reason for the failures. It seems completely random and out of my control.
+While implementing the self-service password reset feature via Microsoft Entra, I stumbled over the infamous 
+"Invalid STS Request" error. You can find it all over the internet: Microsoft forums, reddit, blogs. 
+It’s a weird issue because, as for the longest time, I could not for the life of me  
+figure out why it happens. It seems completely random.
 
-The internet is full of people describing the problem and no solutions in sight. For most cases I could find,
-the issue solved itself.
+The internet is full of people describing the problem. For most cases, that I found documented somewhere
+the issue solved itself magically.
 
 ## The Problem
 
@@ -23,16 +24,16 @@ The initial call to the endpoint `resetpassword/v1.0/start` works as expected. H
 call to `resetpassword/v1.0/challenge` randomly fails with the *"Invalid STS Request"* error. Strangely enough, 
 retrying the entire process resolves the issue without any changes on my part.
 
-Similarly, I’ve noticed another odd issue while creating new users in Entra. After receiving confirmation from 
+Similarly, I’ve noticed a similarly odd issue while creating new users in Entra. After receiving confirmation from 
 Entra that the user creation was successful, any immediate login attempts often result in a `user_not_found` error. 
 Again, retrying after a short wait resolves the problem.
 
 ## Investigation and Findings
 
-In both cases, the root cause seems to be the reliability of Microsoft's Entra responses. It’s clear 
-that some operations, especially those involving authentication or user provisioning, are not consistently processed 
-in real time. I can only speculate why that is. Maybe there is a faulty node in a round-robin load balancing or 
-Microsoft is using indexes that updates too slowly.ght be causing these errors.
+In both cases, the root cause seems to be a reliability issue on Microsoft's side. It’s clear 
+that some operations, are not processed consistently. I can only speculate why that is. 
+Maybe there is a faulty node in a round-robin load balancing or 
+Microsoft is using internal indexes that update too slowly? I don't know.
 
 Takeaway: You cannot trust Entra to reliable produce consistent responses.
 
@@ -40,8 +41,7 @@ Takeaway: You cannot trust Entra to reliable produce consistent responses.
 
 The only reliable solution I’ve found is to implement a retry mechanism. By retrying the failed operations, 
 the system can work around these random errors. I admit, this is less than ideal. It clutters the code and makes
-everything just a little more complicated. My idea was to encapsulate the retry mechanism so it conveniently hidden
-away:
+everything just a little more complicated. My idea is to encapsulate the retry mechanism:
 
 1. **Initial Retry**
    When an error is encountered, the system retries the operation immediately.
