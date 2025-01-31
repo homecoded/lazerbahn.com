@@ -8,25 +8,24 @@
 
 #DATE#
 
-While implementing the self-service password reset feature via Microsoft Entra, I stumbled over the infamous 
-"Invalid STS Request" error. You can find it all over the internet: Microsoft forums, reddit, blogs. 
-It’s a weird issue because, as for the longest time, I could not for the life of me  
-figure out why it happens. It seems completely random.
+While implementing a self-service password-reset flow using Microsoft Entra, I keep stumbling over strange issues.
+One of them is an error called "Invalid STS Request". You can find it all over the internet: 
+Microsoft forums, reddit, blogs. It’s a weird issue because in most cases nobody found a clear explanation 
+and the issue solved itself after some time all by itself.
 
-The internet is full of people describing the problem. For most cases, that I found documented somewhere
-the issue solved itself magically.
+The internet is full of people describing the problem. Yet, there seems no clear solution path.
 
 ## The Problem
 
-Here’s what typically happens when we do Entra calls (example for self-service password reset):
+Here’s what typically happens when I do the corresponding Entra calls (example for self-service password reset):
 
 The initial call to the endpoint `resetpassword/v1.0/start` works as expected. However, the subsequent 
-call to `resetpassword/v1.0/challenge` randomly fails with the *"Invalid STS Request"* error. Strangely enough, 
-retrying the entire process resolves the issue without any changes on my part.
+call to `resetpassword/v1.0/challenge` randomly fails with *"Invalid STS Request"*. Strangely enough, 
+retrying the request resolves the issue without any changes on my part.
 
-Similarly, I’ve noticed a similarly odd issue while creating new users in Entra. After receiving confirmation from 
-Entra that the user creation was successful, any immediate login attempts often result in a `user_not_found` error. 
-Again, retrying after a short wait resolves the problem.
+Similarly, I’ve noticed an odd issue while creating new users in Entra, too. After receiving confirmation from 
+Entra that the user creation was successful, any immediate login attempts sometimes result in a `user_not_found` error. 
+Again, retrying after a short wait resolves the problem. 
 
 ## Investigation and Findings
 
@@ -35,13 +34,15 @@ that some operations, are not processed consistently. I can only speculate why t
 Maybe there is a faulty node in a round-robin load balancing or 
 Microsoft is using internal indexes that update too slowly? I don't know.
 
-Takeaway: You cannot trust Entra to reliable produce consistent responses.
+Takeaway: You cannot trust Entra to reliably produce consistent responses.
 
 ## The Solution: Retry with Backoff
 
 The only reliable solution I’ve found is to implement a retry mechanism. By retrying the failed operations, 
-the system can work around these random errors. I admit, this is less than ideal. It clutters the code and makes
-everything just a little more complicated. My idea is to encapsulate the retry mechanism:
+the random errors become less of a nuisance. I admit, this is less than ideal. It clutters the code and makes
+everything just a little more complicated. 
+
+To not make matters any worse, I try to encapsulate the retry mechanism as best as I can:
 
 1. **Initial Retry**
    When an error is encountered, the system retries the operation immediately.
@@ -102,6 +103,9 @@ Here's how you can pull this off:
       } catch (Exception $e) {
           echo 'Final error: ' . $e->getMessage() . PHP_EOL;
       }
+
+You may want to update the logging calls: Echo calls are not suitable for server logging i
+n web-site environments. Please replace or remove as you see fit.  
 
 Happy Coding,
 Manuel
