@@ -16,10 +16,12 @@ Now, many candidates may have been thinking, "But wait, I don't have a ton of co
 guy?" Well, have no fear! One of the great things about this approach is that it allows me to identify quick thinkers and 
 bright heads, even if they don't have a ton of experience under their belt. I once hired a guy who had never worked as 
 a programmer before, but had a background in procurement (of all things). And you know what? He quickly turned into one 
-of my most solid team members. So don't count yourself out just because you don't have a traditional coding background.
+of my most solid team members. So, having no traditional coder background does not mean you cannot be a great coder.
 
-During the interview, I like to start by getting the applicant talking about something they're passionate about. This 
-helps me get a sense of their communication skills and how they think on their feet. Plus, it's just more fun that way. 
+I like to start the interview by asking the applicant about something they're passionate about. This 
+helps me get a sense of their communication skills and how they think. Plus, it's just more fun to get someone
+to know this way.
+
 Next, I move on to some coding challenges. I'll ask the candidate what their favorite programming language is and let 
 them face any challenge in this language. I often ask why they like this specific language so much. It's a fun question
 because bright thinkers will not have a problem to come up with some answer. If I don't get a proper answer to this
@@ -36,22 +38,23 @@ That's why I allow them to use resources like Google to help them out. This not 
 but also gives me insight into how they go about finding answers and solving problems on their own. I mean, let's be 
 real – who doesn't use Google at work?
 
-After the interview, I like to follow up with a written or oral assessment of the candidate's strengths and areas for 
-improvement. This helps me provide more specific feedback and allows the candidate to see where they stand. 
+After the interview, I usually follow up with a written or oral assessment of the candidate's strengths and areas for 
+improvement. This forces to provide specific factual feedback and allows the candidate to see where they stand. 
 Sometimes, I might even give them a homework assignment to show me that they're able to put my suggestions for 
 improvement into action.
 
 The combination of interviews and practical exercises proved to be the most effective method for me to evaluate 
 candidates and find the right fit for our team. A valuable lesson I learned is that if there is any doubt about a 
 candidate, it's best to let them go. If they are unable to demonstrate their intelligence and quick thinking during the 
-interview process, it's unlikely they will excel in the job or be great with customers and superiors.
+interview process, it's unlikely they'll do it with customers and/or superiors later.
 
-It's important to remember that every employee you hire reflects on your reputation. Hiring talented individuals 
+Remember: every person you hire reflects back on you. Hiring talented individuals 
 will enhance your reputation, while hiring poor candidates will damage it. Therefore, it's crucial to make difficult 
 decisions and prioritize quality over quantity. It's better to pass on a good candidate than to risk hiring a 
-poor performer. Always strive to hire the best of the best.
+poor performer. Always go on to hire the best you can get.
 
-Here are some examples of simple programming challenges that you can use as an inspiration:
+Lastly, here are some practical examples of simple challenges that you can use as an inspiration for a programming
+interview:
 
 ## Challenge 1:
 

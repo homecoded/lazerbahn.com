@@ -8,7 +8,7 @@
 
 #DATE#
 
-Every now and then, I need to check if I’m dealing with a logged-in user in Magento 2. If I rely on 
+Every now and then, I need to check if I'm dealing with a logged-in user in Magento 2. If I rely on 
 the familiar `Magento\Customer\Model\Session::isLoggedIn` method, though, PHPMD (PHP Mess Detector) 
 greets me with an error, since the code I'm working on is rarely part of the "HTML presentation layer."
 
@@ -50,7 +50,7 @@ Then, to check the login status, I use this line wherever needed:
 The `getValue` function returns `false` if a customer is logged out and `true` if logged in.
 This function provides the same functionality as `isLoggedIn` but avoids triggering the Mess Detector error.
 
-So, I’m now using HTTP context to keep Mess Detector happy — and you should, too.
+So, I'm now using HTTP context to keep Mess Detector happy - and you should, too.
 
 Happy Coding,
 Manuel

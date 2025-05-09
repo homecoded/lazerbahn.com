@@ -6,6 +6,8 @@
 
 # (DEV-TIP) Debugging Hyvä <br/>"Uncaught TypeError: hyva.alpineInitialized is not a function"
 
+#DATE#
+
 It started with a seemingly trivial issue: a Hyvä-based Magento frontend throwing the following JavaScript error 
 in the console:
 

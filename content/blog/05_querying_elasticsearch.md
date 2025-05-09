@@ -9,18 +9,12 @@
 #DATE#
 
 Elasticsearch is a powerful search engine and database that is often used in web development to 
-provide fast and accurate search results. It is built on top of the Apache Lucene library, and is 
-known for its ability to handle large volumes of data and provide fast search performance.
+provide fast and accurate search results. It is built on Apache Lucene,  
+can handle large volumes of data, and provides great search performance.
 
-In Magento 2, Elasticsearch is used as the default search engine for the e-commerce platform. 
-It provides advanced search capabilities, including full-text search, faceted search, and geospatial 
-search, and can be easily integrated into Magento 2 using the Elasticsearch module.
-
-One of the main benefits of using Elasticsearch in Magento 2 is its ability to handle large volumes 
-of data efficiently. This is especially important for e-commerce websites, which often have large 
-catalogs of products and need to provide fast and accurate search results to customers. Elasticsearch 
-also offers powerful features like faceted search and geospatial search, which can be useful for 
-e-commerce websites that need to provide customers with advanced search options.
+Magento 2 uses ElasticSearch as the default search engine. 
+It provides advanced search capabilities like full-text search, faceted search, and geospatial 
+analysis.
 
 > How does Magento store index data?
 >

@@ -10,26 +10,26 @@
 
 While implementing a self-service password-reset flow using Microsoft Entra, I keep stumbling over strange issues.
 One of them is an error called "Invalid STS Request". You can find it all over the internet: 
-Microsoft forums, reddit, blogs. It’s a weird issue because in most cases nobody found a clear explanation 
+Microsoft forums, reddit, blogs. It's a weird issue because in most cases nobody found a clear explanation 
 and the issue solved itself after some time all by itself.
 
 The internet is full of people describing the problem. Yet, there seems no clear solution path.
 
 ## The Problem
 
-Here’s what typically happens when I do the corresponding Entra calls (example for self-service password reset):
+Here's what typically happens when I do the corresponding Entra calls (example for self-service password reset):
 
 The initial call to the endpoint `resetpassword/v1.0/start` works as expected. However, the subsequent 
 call to `resetpassword/v1.0/challenge` randomly fails with *"Invalid STS Request"*. Strangely enough, 
 retrying the request resolves the issue without any changes on my part.
 
-Similarly, I’ve noticed an odd issue while creating new users in Entra, too. After receiving confirmation from 
+Similarly, I've noticed an odd issue while creating new users in Entra, too. After receiving confirmation from 
 Entra that the user creation was successful, any immediate login attempts sometimes result in a `user_not_found` error. 
 Again, retrying after a short wait resolves the problem. 
 
 ## Investigation and Findings
 
-In both cases, the root cause seems to be a reliability issue on Microsoft's side. It’s clear 
+In both cases, the root cause seems to be a reliability issue on Microsoft's side. It's clear 
 that some operations, are not processed consistently. I can only speculate why that is. 
 Maybe there is a faulty node in a round-robin load balancing or 
 Microsoft is using internal indexes that update too slowly? I don't know.
@@ -38,7 +38,7 @@ Takeaway: You cannot trust Entra to reliably produce consistent responses.
 
 ## The Solution: Retry with Backoff
 
-The only reliable solution I’ve found is to implement a retry mechanism. By retrying the failed operations, 
+The only reliable solution I've found is to implement a retry mechanism. By retrying the failed operations, 
 the random errors become less of a nuisance. I admit, this is less than ideal. It clutters the code and makes
 everything just a little more complicated. 
 
