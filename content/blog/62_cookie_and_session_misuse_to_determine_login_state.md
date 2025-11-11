@@ -56,8 +56,9 @@ This function provides the same functionality as `isLoggedIn` but avoids trigger
 
 ## There is another contestant: UserContextInterface
 
-Not in all contexts `Magento\Customer\Model\Context` gets initialized. E.g. Rest-API is not initializing it.
-In the Rest-API context you may use `Magento\Authorization\Model\UserContextInterface` in this way:
+The model `Magento\Customer\Model\Context` does not get initialized in all contexts, unfortunately. 
+E.g. Rest-API is not initializing it. In the Rest-API context you may use 
+`Magento\Authorization\Model\UserContextInterface`, though:
 
     // ..
     use Magento\Authorization\Model\UserContextInterface;
