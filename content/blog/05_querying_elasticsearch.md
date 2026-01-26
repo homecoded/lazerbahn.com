@@ -1,6 +1,6 @@
 % TITLE (DEV-TIP) Verifying data from an ElasticSearch instance working with Magento2
 % DESCRIPTION With a few simple curl calls in a bash, data can be extracted from an ElasticSearch instance.
-% DATE 6.7.2022
+% DATE 6.7.2022 - update: 26.1.2026
 
 [<< Back to Overview](../blog.html)
 
@@ -97,6 +97,16 @@ Getting rid of an index can be done via curl as well. The following command tell
 all indexes:
 
     curl -XDELETE localhost:9200/*
+
+If the above fails with **"illegal_argument_exception: Wildcard expressions or all indices are not allowed"** try 
+enabling wildcards: 
+
+    curl -XPUT -H 'Content-Type: application/json' localhost:9200/_cluster/settings -d'
+    {
+        "transient": {
+            "action.destructive_requires_name":false
+        }
+    }'
 
 After that you need to do
 
