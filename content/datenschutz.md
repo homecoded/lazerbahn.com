@@ -183,6 +183,24 @@ eines Mitgliedstaats verarbeitet werden.
 
 ## 4. Datenerfassung auf dieser Website
 
+### Server-Log-Dateien
+
+Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten
+Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
+
+- IP-Adresse
+- Datum und Uhrzeit der Serveranfrage
+- aufgerufene Seite bzw. Datei
+- Referrer URL
+- Browsertyp und Browserversion
+- verwendetes Betriebssystem
+
+Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung
+dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes
+Interesse an der technisch fehlerfreien Darstellung und der Sicherheit unserer Website, wofür die
+Server-Log-Dateien erfasst werden müssen. Die Server-Log-Dateien werden nach spätestens 14 Tagen
+automatisch gelöscht. Dies gilt auch für resumeplay.lazerbahn.com.
+
 ### Anfrage per E-Mail, Telefon oder Telefax
 
 Wenn Sie uns per E-Mail, Telefon oder Telefax kontaktieren, wird Ihre Anfrage inklusive aller daraus
@@ -198,6 +216,68 @@ Die von Ihnen an uns per Kontaktanfragen übersandten Daten verbleiben bei uns, 
 auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt
 (z. B. nach abgeschlossener Bearbeitung Ihres Anliegens). Zwingende gesetzliche Bestimmungen –
 insbesondere gesetzliche Aufbewahrungsfristen – bleiben unberührt.
+
+## 5. ResumePlay (resumeplay.lazerbahn.com) {#resumeplay}
+
+ResumePlay ist eine Web-Anwendung, mit der Sie YouTube-Videos (z. B. Hörbücher) abspielen und
+später an der zuletzt gehörten Stelle fortsetzen können. Für ResumePlay gelten zusätzlich die
+folgenden Hinweise.
+
+### Speicherung in Ihrem Browser (LocalStorage und Einwilligungs-Cookie)
+
+ResumePlay speichert die zuletzt geladene YouTube-URL und die aktuelle Abspielposition im
+LocalStorage Ihres Browsers. Diese Daten verbleiben auf Ihrem Gerät und werden nicht an uns
+übertragen. Außerdem setzt ResumePlay ein Cookie mit dem Namen „consent“, in dem gespeichert wird,
+dass Sie dem Laden von YouTube zugestimmt haben.
+
+Beides ist für die von Ihnen gewünschte Funktion technisch unbedingt erforderlich (§ 25 Abs. 2
+Nr. 2 TDDDG). Das Cookie ist ein Jahr gültig. Danach werden Sie erneut um Ihre Einwilligung
+gebeten. Widerrufen Sie Ihre Einwilligung vorher, wird das Cookie sofort gelöscht. Die Daten im
+LocalStorage und das Cookie können Sie außerdem jederzeit über die Einstellungen Ihres Browsers
+löschen.
+
+### YouTube
+
+ResumePlay bindet Videos der Plattform YouTube über die YouTube IFrame Player API ein. Anbieter ist
+die Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland.
+
+Wir nutzen YouTube im erweiterten Datenschutzmodus (youtube-nocookie.com). Dieser Modus bewirkt laut
+YouTube, dass YouTube keine Informationen über die Besucher dieser Website speichert, bevor diese sich
+ein Video ansehen. Die Weitergabe von Daten an YouTube-Partner wird durch den erweiterten
+Datenschutzmodus jedoch nicht zwingend ausgeschlossen.
+
+YouTube wird erst geladen, nachdem Sie über die Schaltfläche in ResumePlay ausdrücklich
+eingewilligt haben. Vorher wird keine Verbindung zu Servern von Google aufgebaut. Sobald YouTube
+geladen ist, werden insbesondere folgende Daten an Google übermittelt:
+
+- Ihre IP-Adresse
+- technische Informationen über Ihren Browser und Ihr Endgerät
+- die aufgerufene Seite und die abgespielten Videos
+
+YouTube kann dabei Cookies und vergleichbare Technologien (z. B. LocalStorage) auf Ihrem Endgerät
+speichern bzw. auslesen, um Statistiken zu erstellen, die Nutzerfreundlichkeit zu verbessern und
+Betrugsversuche zu verhindern. Wenn Sie in Ihrem Google- bzw. YouTube-Konto eingeloggt sind, kann
+Google Ihr Abspielverhalten Ihrem persönlichen Profil zuordnen. Das verhindern Sie, indem Sie sich
+vorher aus Ihrem Google-Konto ausloggen. Auf die Datenverarbeitung durch Google haben wir keinen
+Einfluss.
+
+Die Nutzung von YouTube erfolgt auf Grundlage Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO und
+§ 25 Abs. 1 TDDDG).
+
+Daten können dabei auch an die Google LLC in den USA übermittelt werden. Google LLC ist nach dem
+EU-US Data Privacy Framework (DPF) zertifiziert. Für Übermittlungen an zertifizierte Unternehmen
+besteht ein Angemessenheitsbeschluss der EU-Kommission (Art. 45 DSGVO). Weitere Informationen
+finden Sie unter <https://www.dataprivacyframework.gov/>.
+
+### Widerruf der Einwilligung
+
+Sie können Ihre Einwilligung jederzeit mit Wirkung für die Zukunft über die Schaltfläche
+„Withdraw Cookie Consent“ unten auf der Seite von ResumePlay widerrufen. Danach wird YouTube nicht mehr
+geladen. Cookies, die YouTube bereits gesetzt hat, gehören zur Domain von Google und können von
+uns nicht gelöscht werden. Sie können sie über die Einstellungen Ihres Browsers löschen.
+
+Weitere Informationen zum Umgang mit Nutzerdaten finden Sie in der Datenschutzerklärung von
+Google: <https://policies.google.com/privacy?hl=de>.
 
 Quelle:
 <https://www.datenschutzerklaerung.de>
