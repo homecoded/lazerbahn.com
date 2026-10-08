@@ -4,64 +4,116 @@
 <head>
   <meta charset="utf-8">
 
-  <title>LAZERBAHN software development & consulting</title>
-  <meta name="description" content="LAZERBAHN software development & consulting - Manuel Rülke">
-  <meta name="author" content="Lazerbahn">
+  <title>Manuel Rülke – Softwarearchitektur & E-Commerce-Entwicklung | Lazerbahn</title>
+  <meta name="description" content="Manuel Rülke, Softwarearchitekt und Full-Stack-Entwickler mit Schwerpunkt E-Commerce. Technischer Blog über Magento, Debugging und ressourcensparende Software.">
+  <meta name="author" content="Manuel Rülke">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="/css/styles.min.css?v=#VERSION#">
   <link rel="canonical" href="https://lazerbahn.com/" />
-  <link rel="preload" href="/fonts/montserrat-v15-latin-regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/osifont-lzb.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/notosans-lzb.woff2" as="font" type="font/woff2" crossorigin>
 </head>
 
-<body>
-<div class="navigation ">
-  <div class="content">
-    <a href="/">
-      <span class="logo">Lazerbahn</span>
-      <span class="subline">development & consulting - Manuel Rülke</span>
-    </a>
-  </div>
+<body class="blueprint">
+<div class="sheet">
+  <header class="sheet__head">
+    <a class="brand" href="/">Lazerbahn</a>
+    <nav class="nav" aria-label="Hauptnavigation">
+      <ul>
+        <li><a href="/ueber-manuel-ruelke.html">Über mich</a></li>
+        <li><a href="/blog.html">Blog</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="drawing">
+    <section class="intro" aria-labelledby="intro-title">
+      <h1 id="intro-title">Manuel Rülke</h1>
+      <p class="intro__role">Softwarearchitekt und Full-Stack-Entwickler, Schwerpunkt <span class="nowrap">E-Commerce</span></p>
+      <p>
+        Hallo, ich bin Manuel. Nach meiner Erfahrung ist die größte Herausforderung in IT-Projekten die
+        <strong>Komplexität</strong>. Daher versuche ich, wo immer möglich, Lösungen zu vereinfachen, um vor allem
+        funktionale und wartungsarme Systeme zu schaffen. Darüber hinaus kämpfe ich für ressourcen&shy;sparende
+        Lösungen: Zum Beispiel überträgt kein Aufruf dieser Webseite mehr als 100&nbsp;kB!
+      </p>
+    </section>
+
+    <figure class="view" aria-labelledby="view-caption">
+      <div class="view__stage">
+        <canvas id="text-stage" width="512" height="512" aria-hidden="true"></canvas>
+        <span class="dim dim--x" aria-hidden="true"><span>32 Zeichen</span></span>
+        <span class="dim dim--y" aria-hidden="true"><span>32 Zeilen</span></span>
+        <span class="axis axis--x" aria-hidden="true"></span>
+        <span class="axis axis--y" aria-hidden="true"></span>
+        <span class="leader" aria-hidden="true"></span>
+        <span class="annotation" aria-hidden="true">
+          <span class="annotation__text">θ = <span id="readout-angle">0,0</span>°<br>
+          Renderzeit <span id="readout-time">–</span>&nbsp;ms</span>
+        </span>
+      </div>
+      <figcaption id="view-caption">
+        <span class="label">Ansicht A</span>
+        Würfel, Drahtgitter per Software gerastert und in Zeichen umgesetzt, live im Browser.
+      </figcaption>
+      <div class="view__controls">
+        <p class="legend"><span class="label">Helligkeitsstufen</span> <code>&nbsp;·-:=*#</code></p>
+        <fieldset class="speed">
+          <legend class="label">Drehzahl</legend>
+          <label><input type="radio" name="speed" value="0"><span>Halt</span></label>
+          <label><input type="radio" name="speed" value="0.5"><span>½</span></label>
+          <label><input type="radio" name="speed" value="1" checked><span>1</span></label>
+          <label><input type="radio" name="speed" value="2"><span>2</span></label>
+        </fieldset>
+      </div>
+    </figure>
+
+    <section class="parts" aria-labelledby="parts-title">
+      <h2 id="parts-title">Stückliste: neueste Artikel</h2>
+      <table class="parts__table" lang="en">
+        <thead>
+          <tr><th scope="col" lang="de">Pos.</th><th scope="col" lang="de">Datum</th><th scope="col" lang="de">Benennung</th></tr>
+        </thead>
+        <tbody>
+<!-- LATEST_POSTS -->
+        </tbody>
+      </table>
+      <p class="parts__all"><a href="/blog.html">Alle Artikel</a></p>
+    </section>
+
+    <section class="details" aria-label="Details">
+      <figure class="detail">
+        <canvas id="stage" width="32" height="32"></canvas>
+        <figcaption><span class="label">Detail B</span> Pixelpuffer, 32 × 32. Aus diesen Helligkeiten entstehen die Zeichen in Ansicht A.</figcaption>
+      </figure>
+      <figure class="detail detail--portrait">
+        <img src="/images/manu.png" width="207" height="665" alt="Manuel Rülke">
+        <figcaption><span class="label">Bearbeiter</span> Manuel Rülke</figcaption>
+      </figure>
+      <p class="details__text">
+        Als Diplom-Informatiker (FH) für Mathematische Methoden der Informatik und <strong>Adobe Certified
+        Professional – Magento Commerce Developer</strong> liebe ich es, effektive
+        E-Commerce-Lösungen zu entwickeln. Im Jahr 2005 wurde ich beim Deutschen Entwicklerpreis als
+        <strong>Bester Deutscher Nachwuchs&shy;entwickler</strong> ausgezeichnet. 2015 habe ich den zweiten Platz
+        im internationalen Programmiert-Wettbewerb JS1k den zweiten Platz belegt.
+      </p>
+    </section>
+  </main>
+
+  <footer class="titleblock">
+    <dl>
+      <div class="titleblock__name"><dt>Benennung</dt><dd>Lazerbahn · Manuel Rülke</dd></div>
+      <div><dt>Kontakt</dt><dd><a href="mailto:mr@lazerbahn.com">mr@lazerbahn.com</a></dd></div>
+      <div><dt>Seitengewicht</dt><dd><span id="readout-weight">unter 100&nbsp;kB</span> <span class="titleblock__aside">Budget 100&nbsp;kB</span></dd></div>
+      <div><dt>Stand</dt><dd><span class="rev" title="Revision">a</span> #BUILD_DATE#</dd></div>
+      <div><dt>Blatt</dt><dd>1 / 1</dd></div>
+      <div class="titleblock__links"><dt>Weiteres</dt><dd>
+        <a href="/impressum.html">Impressum</a>
+        <a href="/datenschutz.html">Datenschutz</a>
+        <a href="https://github.com/homecoded/lazerbahn.com" lang="en">Quelltext</a>
+      </dd></div>
+    </dl>
+  </footer>
 </div>
-<div class="statement">
-  <div class="animation">
-    <canvas id="stage" width="32" height="32"></canvas>
-    <canvas id="text-stage" width="512" height="512" aria-hidden="true"></canvas>
-  </div>
-  <div class="manu">
-  </div>
-</div>
-<div class="menu--main-content">
-  <div class="content menu  menu--main">
-    <ul role="navigation">
-      <li><a href="/ueber-manuel-ruelke.html">Mehr über mich</a></li>
-      <li><a href="/blog.html">Blog</a></li>
-    </ul>
-  </div>
-</div>
-<div class="content" role="main">
-  <h3>Hallo, ich bin Manuel,</h3>
-  <p>
-    Softwarearchitekt und Full-Stack-Entwickler mit dem Schwerpunkt E-Commerce. Nach meiner Erfahrung
-    ist die größte Herausforderung in IT-Projekten die <strong>Komplexität</strong>. Daher versuche ich, wo immer möglich,
-    Lösungen zu vereinfachen, um vor allem funktionale und wartungsarme Systeme zu schaffen. Darüberhinaus kämpfe ich
-    für ressourcen-sparende Lösungen: Zum Beispiel überträgt kein Aufruf dieser Webseite mehr als 100kB!
-  </p>
-  <p>
-    Als Diplom-Informatiker (FH) für Mathematische Methoden der Informatik und <strong>Adobe Certified Professional -
-    Magento Commerce Developer</strong> verfüge ich über das Know-how, um effektive E-Commerce-Lösungen zu entwickeln.
-    Im Jahr 2005 wurde ich beim Deutschen Entwicklerpreis als <strong>Bester Deutscher Nachwuchs&shy;entwickler</strong>
-    ausgezeichnet.
-  </p>
-</div>
-<div class="content">
-  <div class="menu  menu--footer">
-    <small>$/footer/&gt;_</small>
-    <ul>
-      <li>{<a href="impressum.html">Impressum</a>}</li>
-      <li>{<a href="datenschutz.html">Datenschutz</a>}</li>
-    </ul>
-  </div>
-</div>
-<script type="application/javascript" src="js/scripts.min.js?v=#VERSION#"></script>
+<script src="/js/scripts.min.js?v=#VERSION#"></script>
 </body>
 </html>

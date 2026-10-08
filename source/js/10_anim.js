@@ -1,6 +1,10 @@
 window.onload = (function () {
+  // only the start page has the drawing
+  if (!document.getElementById('stage')) {
+    return;
+  }
   var pixelCanvas = document.getElementById('stage'),
-      pixelContext = pixelCanvas.getContext("2d"),
+      pixelContext = pixelCanvas.getContext("2d", {willReadFrequently: true}),
       textModeCanvas = document.getElementById('text-stage'),
       textModeContext = textModeCanvas.getContext('2d'),
       CANVAS_WIDTH = pixelCanvas.width = 32,
@@ -9,7 +13,7 @@ window.onload = (function () {
       TEXT_CANVAS_WIDTH = textModeCanvas.width = FONT_SIZE * CANVAS_WIDTH,
       TEXT_CANVAS_HEIGHT = textModeCanvas.height = FONT_SIZE * CANVAS_HEIGHT,
       SCREEN_DIST = 2500,
-      FIELD_OF_VIEW = CANVAS_WIDTH * 0.6,
+      FIELD_OF_VIEW = CANVAS_WIDTH * 0.8125,
       CUBE_VERTICES = [
         [-1, -1, -1], [1, -1, -1], [-1, 1, -1], [1, 1, -1],
         [-1, -1, 1], [1, -1, 1], [-1, 1, 1], [1, 1, 1]
@@ -26,15 +30,9 @@ window.onload = (function () {
       ASCII_GRAPHICS = [],
       objects3d = [],
       textCanvas = [],
-      angleCounter = 0
+      // start at a three-quarter view (about 30°) instead of face-on
+      angleCounter = 0.5
   ;
-  /*                6 *********** 7
-  *                *            *                     / \
-             2 ************ 3   *                      | y
-               *    4     *    ** 5           _|
-               *          * **                /          - > x
-             0 ************ 1                z
-   */
 
   for (var y = 0; y < CANVAS_HEIGHT; y++) {
     textCanvas[y] = [];
@@ -48,7 +46,7 @@ window.onload = (function () {
     ASCII_GRAPHICS[i].width = FONT_SIZE;
     ASCII_GRAPHICS[i].height = FONT_SIZE;
     var ctx = ASCII_GRAPHICS[i].getContext("2d");
-    ctx.fillStyle = '#f6f3ce';
+    ctx.fillStyle = '#f1f5ff';
     ctx.font = FONT_SIZE + "px monospace";
     ctx.fillText(ASCII_TABLE[i], 0, FONT_SIZE);
   }
@@ -75,11 +73,11 @@ window.onload = (function () {
     textModeContext.clearRect(0, 0, TEXT_CANVAS_WIDTH, TEXT_CANVAS_HEIGHT);
 
     // Loop through the dots array and draw every dot
-    angleCounter += 0.025;
+    angleCounter += 0.015 * speed;
     objects3d[0].angle = Math.PI * 2 * Math.sin(angleCounter / 6);
 
     for (var i = 0; i < objects3d.length; i++) {
-      objects3d[i].z = objects3d[i].startZ + 800 * Math.sin(objects3d[i].angle);
+      objects3d[i].z = objects3d[i].startZ + 200 * Math.sin(objects3d[i].angle);
       objects3d[i].draw();
     }
 
@@ -105,7 +103,84 @@ window.onload = (function () {
     }
   }
 
-  setInterval(animationStep, 100);
+  var FRAME_DURATION = 70,
+      lastFrame = 0,
+      speed = 0.7,
+      renderTime = 0,
+      angleReadout = document.getElementById('readout-angle'),
+      timeReadout = document.getElementById('readout-time'),
+      weightReadout = document.getElementById('readout-weight'),
+      speedInputs = document.getElementsByName('speed'),
+      reducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function formatNumber(value, digits) {
+    return value.toFixed(digits).replace('.', ',');
+  }
+
+  // draw one frame and update the live annotations on the drawing
+  function renderFrame() {
+    var start = performance.now();
+    animationStep();
+    var duration = performance.now() - start;
+    renderTime = renderTime ? renderTime * 0.9 + duration * 0.1 : duration;
+
+    var degrees = (objects3d[0].angle * 180 / Math.PI) % 360;
+    if (degrees < 0) {
+      degrees += 360;
+    }
+    if (angleReadout) {
+      angleReadout.textContent = formatNumber(degrees, 1);
+    }
+    if (timeReadout) {
+      timeReadout.textContent = formatNumber(renderTime, 2);
+    }
+  }
+
+  function setSpeed(value) {
+    speed = value;
+    for (var i = 0; i < speedInputs.length; i++) {
+      speedInputs[i].checked = parseFloat(speedInputs[i].value) === value;
+    }
+  }
+
+  for (var i = 0; i < speedInputs.length; i++) {
+    speedInputs[i].onchange = function () {
+      setSpeed(parseFloat(this.value));
+    };
+  }
+
+  // requestAnimationFrame pauses by itself in background tabs
+  function loop(timestamp) {
+    if (speed > 0 && timestamp - lastFrame >= FRAME_DURATION) {
+      lastFrame = timestamp;
+      renderFrame();
+    }
+    window.requestAnimationFrame(loop);
+  }
+
+  // sum of the compressed size of every file this page view loaded
+  function measurePageWeight() {
+    if (!weightReadout || !window.performance || !performance.getEntriesByType) {
+      return;
+    }
+    var entries = performance.getEntriesByType('navigation').concat(performance.getEntriesByType('resource')),
+        bytes = 0;
+    for (var i = 0; i < entries.length; i++) {
+      bytes += entries[i].encodedBodySize || 0;
+    }
+    if (bytes > 0) {
+      weightReadout.textContent = formatNumber(bytes / 1000, 1) + ' kB';
+    }
+  }
+
+  // the cube stands still until asked when reduced motion is preferred
+  if (reducedMotion && reducedMotion.matches) {
+    setSpeed(0);
+  }
+  renderFrame();
+  window.requestAnimationFrame(loop);
+  measurePageWeight();
+  setTimeout(measurePageWeight, 2000);
 });
 
 

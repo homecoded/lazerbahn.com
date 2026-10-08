@@ -24,24 +24,84 @@ __prepareBlogNavigation () {
     echo "% DESCRIPTION Übersicht über alle Blogposts in chronologischer Reihenfolge" >> content/blog.md
 
     cat content/blog/stubs/blog.md >> content/blog.md
-    counter=1
 
-    find content/blog -maxdepth 1 -type f -print0 | xargs -0 ls -v | tac | while read file
+    total=$(ls content/blog/*.md | wc -l)
+    kinds=$(for file in content/blog/*.md; do __getPostKind "$file"; done | sort -u)
+
+    echo '<div class="blog-filter" hidden>' >> content/blog.md
+    echo '<fieldset class="speed"><legend class="label">Type</legend>' >> content/blog.md
+    echo '<label><input type="radio" name="kind" value="" checked><span>All</span></label>' >> content/blog.md
+    for kind in $kinds
+    do
+        echo "<label><input type=\"radio\" name=\"kind\" value=\"$kind\"><span>$kind</span></label>" >> content/blog.md
+    done
+    echo '</fieldset>' >> content/blog.md
+    echo '</div>' >> content/blog.md
+
+    echo '<table class="parts__table blog-index">' >> content/blog.md
+    echo '<thead><tr><th scope="col">No.</th><th scope="col">Date</th><th scope="col">Title</th></tr></thead>' >> content/blog.md
+    echo '<tbody>' >> content/blog.md
+    sheet=$total
+    __sortedBlogPosts | while read file
     do
         echo "blog post $file"
-        title=$(__getMetaTagFromMarkdownFile $file "TITLE")
-        description=$(__getMetaTagFromMarkdownFile $file "DESCRIPTION")
-        date=$(__getMetaTagFromMarkdownFile $file "DATE")
-        url=$(__getHtmlPathForMarkdownFile $file)
-
-        echo "<div class=\"blog--entry\">" >> content/blog.md
-        echo -e "<h3 role="link"><strong>$counter</strong>. [ $title ]($url) </h3>\n" >> content/blog.md
-        echo -e "**$date**\n" >> content/blog.md
-        echo -e "$description\n" >> content/blog.md
-        echo "</div>" >> content/blog.md
-        counter=$((counter + 1))
+        title=$(__getPostTitle "$file")
+        kind=$(__getPostKind "$file")
+        description=$(__getMetaTagFromMarkdownFile "$file" "DESCRIPTION" | sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g')
+        date=$(__getPostDate "$file")
+        updated=$(__getPostUpdated "$file")
+        url=$(__getHtmlPathForMarkdownFile "$file")
+        dateHtml="$date"
+        if [ -n "$updated" ]; then
+            dateHtml="$date <span class=\"parts__upd\">upd. $updated</span>"
+        fi
+        printf '<tr data-kind="%s"><td class="parts__pos">%02d</td><td class="parts__date">%s</td><td><a href="/%s">%s</a> <span class="parts__kind">%s</span><span class="blog-index__desc">%s</span></td></tr>\n' \
+            "$kind" "$sheet" "$dateHtml" "$url" "$title" "$kind" "$description" >> content/blog.md
+        sheet=$((sheet - 1))
     done
+    echo '</tbody>' >> content/blog.md
+    echo '</table>' >> content/blog.md
     __addFileToCleanUpList "content/blog.md"
+}
+
+# all blog posts, newest publication date first (first date in "% DATE dd.mm.yyyy ...")
+__sortedBlogPosts () {
+    for file in content/blog/*.md
+    do
+        __getPostDate "$file" | awk -F. -v f="$file" '{ printf "%04d%02d%02d %s\n", $3, $2, $1, f }'
+    done | sort -r | cut -d " " -f 2-
+}
+
+# "(DEV-TIP) Some title" -> "DEV-TIP"
+__getPostKind () {
+    __getMetaTagFromMarkdownFile "$1" "TITLE" | sed -n -e 's/^(\([^)]*\)).*/\1/p'
+}
+
+# "(DEV-TIP) Some title" -> "Some title", HTML-escaped, with break hints in long identifiers
+__getPostTitle () {
+    __getMetaTagFromMarkdownFile "$1" "TITLE" | sed -e 's/^([^)]*) *//' -e 's/&/\&amp;/g' -e 's/</\&lt;/g' \
+        -e 's/\([a-z]\)\([A-Z]\)/\1<wbr>\2/g' -e 's/\.\([A-Za-z]\)/.<wbr>\1/g'
+}
+
+# "29.10.2024 - update: 11.11.2025" -> "29.10.2024"
+__getPostDate () {
+    __getMetaTagFromMarkdownFile "$1" "DATE" | cut -d " " -f 1
+}
+
+# "29.10.2024 - update: 11.11.2025" -> "11.11.2025"
+__getPostUpdated () {
+    __getMetaTagFromMarkdownFile "$1" "DATE" | sed -n -e 's/.*update: *\([0-9.]*\).*/\1/p'
+}
+
+# turn a built post into a drawing sheet (title block, contents, code details)
+__enhanceBlogPost () {
+    file="$1"
+    htmlFile="$2"
+    total=$(ls content/blog/*.md | wc -l)
+    newestFirst=$(__sortedBlogPosts | grep -n -x "$file" | cut -d ":" -f 1)
+    sheet=$((total - newestFirst + 1))
+    node build/enhance-post.js "$htmlFile" "$(__getPostKind "$file")" "$(__getPostDate "$file")" \
+        "$(__getPostUpdated "$file")" "$sheet" "$total"
 }
 
 __getMetaTagFromMarkdownFile () {
@@ -107,12 +167,55 @@ __prepareContent () {
         __addFileToCleanUpList "pub/$filename-fragment.html"
         __updateMetaTagsInHtmlFile "$file" "$targetFilename"
         __setCanonicalLink "$targetFilename"
+        __setActiveNavigation "$targetFilename"
+        case "$file" in
+            content/blog/*.md) __enhanceBlogPost "$file" "$targetFilename" ;;
+            content/blog.md) sed -i -e 's/<html lang="de">/<html lang="en">/' "$targetFilename" ;;
+        esac
     done
 
     # copy static files
     cp source/index.html pub/index.html
     cp source/robots.txt pub/robots.txt
     cp source/favicon.ico pub/favicon.ico
+}
+
+__setActiveNavigation () {
+  htmlFile="$1"
+  current=' aria-current="page"'
+  about=""
+  blog=""
+  case "$htmlFile" in
+    pub/ueber-manuel-ruelke.html) about="$current" ;;
+    pub/blog.html|pub/blog/*) blog="$current" ;;
+  esac
+  sed -i -e "s/#NAV_ABOUT#/$about/" -e "s/#NAV_BLOG#/$blog/" "$htmlFile"
+}
+
+__prepareLatestPosts () {
+    __notify "Adding latest blog posts to start page ..."
+    latestPosts=$(mktemp)
+    position=1
+    __sortedBlogPosts | head -n 5 | while read file
+    do
+        title=$(__getPostTitle "$file")
+        kind=$(__getPostKind "$file")
+        date=$(__getPostDate "$file")
+        updated=$(__getPostUpdated "$file")
+        url=$(__getHtmlPathForMarkdownFile "$file")
+        if [ -n "$updated" ]; then
+            date="$date <span class=\"parts__upd\">akt. $updated</span>"
+        fi
+        kindHtml=""
+        if [ -n "$kind" ]; then
+            kindHtml=" <span class=\"parts__kind\">$kind</span>"
+        fi
+        printf '          <tr><td class="parts__pos">%02d</td><td class="parts__date">%s</td><td><a href="/%s">%s</a>%s</td></tr>\n' \
+            "$position" "$date" "$url" "$title" "$kindHtml" >> "$latestPosts"
+        position=$((position + 1))
+    done
+    sed -i -e "/<!-- LATEST_POSTS -->/r $latestPosts" -e "/<!-- LATEST_POSTS -->/d" pub/index.html
+    rm "$latestPosts"
 }
 
 __setCanonicalLink () {
@@ -144,13 +247,15 @@ __prepareAssetVersioning () {
     for f in $(find pub/ -name '*.html');
     do
         echo "$f";
-        sed -i -e "s/#VERSION#/$(date '+%Y%m%d%H%M%S')/" "$f"
+        sed -i -e "s/#VERSION#/$(date '+%Y%m%d%H%M%S')/" -e "s/#BUILD_DATE#/$(date '+%d.%m.%Y')/" "$f"
     done
 }
 
 __prepareImages () {
     __notify "Preparing images assets ..."
     cp -r source/images pub
+    # editor source files are not meant to be published
+    rm -f pub/images/*.pspimage
     echo "    > Optimize PNGs"
     find pub/images -name '*.png' | xargs optipng -o7 | true
     echo "    > Optimize JPGs"
@@ -228,6 +333,7 @@ fi
 if [ "$1" == "content-only" ]; then
     __prepareBlogNavigation
     __prepareContent
+    __prepareLatestPosts
     __prepareAssetVersioning
     __cleanUpFiles
     exit 0
@@ -236,6 +342,7 @@ fi
 __clearPub
 __prepareBlogNavigation
 __prepareContent
+__prepareLatestPosts
 __prepareAssetVersioning
 __prepareImages
 __prepareFonts

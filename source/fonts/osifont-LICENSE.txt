@@ -1,0 +1,3 @@
+osifont by hikikomori82 (https://github.com/hikikomori82/osifont)
+ISO 3098 technical lettering. Subset of osifont-lgpl3fe.ttf (v0.1.20221020).
+License: GNU LGPL v3 with font exception.

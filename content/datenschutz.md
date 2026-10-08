@@ -225,8 +225,9 @@ folgenden Hinweise.
 
 ### Speicherung in Ihrem Browser (LocalStorage und Einwilligungs-Cookie)
 
-ResumePlay speichert die zuletzt geladene YouTube-URL und die aktuelle Abspielposition im
-LocalStorage Ihres Browsers. Diese Daten verbleiben auf Ihrem Gerät und werden nicht an uns
+ResumePlay speichert für jedes geöffnete Video bzw. jede Playlist eine Speicherdatei (Link, Videotitel, Kanalname, 
+aktuelle Folge, Abspielposition und gewählte Ansicht) sowie Ihre gesamte Abspielzeit und die Einstellung des 
+Sprungschutzes im LocalStorage Ihres Browsers. Diese Daten verbleiben auf Ihrem Gerät und werden nicht an uns
 übertragen. Außerdem setzt ResumePlay ein Cookie mit dem Namen „consent“, in dem gespeichert wird,
 dass Sie dem Laden von YouTube zugestimmt haben.
 
